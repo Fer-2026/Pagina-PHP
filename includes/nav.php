@@ -12,25 +12,42 @@ $menu = [
   'galeria.php' => 'Galería',
   'contacto.php' => 'Contacto',
 ];
+
 $pagina_actual = basename($_SERVER['SCRIPT_NAME']);
+
+// Helper de escape básico en caso de que no lo tengas definido globalmente
+if (!function_exists('e')) {
+    function e($value) {
+        return htmlspecialchars($value ?? '', ENT_QUOTES, 'UTF-8');
+    }
+}
+
+// Fallback por si la constante APP_NAME se definió como NOMBRE_SITIO
+if (!defined('APP_NAME') && defined('NOMBRE_SITIO')) {
+    define('APP_NAME', NOMBRE_SITIO);
+}
 ?>
-    <header>
-      <nav class="navbar navbar-expand-xl bg-white sticky-top" aria-label="Principal">
-        <div class="container">
-          <a class="navbar-brand" href="index.php"><img class="logo" src="img/logo.png" width="48" height="48" alt="" /><?= e(APP_NAME) ?></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="menu">
-            <ul class="navbar-nav ms-auto">
-              <?php foreach ($menu as $archivo => $texto): ?>
-                <?php $activo = ($archivo === $pagina_actual); ?>
-                <li class="nav-item">
-                  <a class="nav-link<?= $activo ? ' active' : '' ?>" href="<?= e($archivo) ?>"<?= $activo ? ' aria-current="page"' : '' ?>><?= e($texto) ?></a>
-                </li>
-              <?php endforeach; ?>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </header>
+
+<header>
+  <nav class="navbar navbar-expand-xl bg-white sticky-top shadow-sm" aria-label="Principal">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.php">
+        <img class="logo" src="img/logo.png" width="48" height="48" alt="Logo Institucional" />
+        <span class="fw-bold text-dark"><?= e(defined('APP_NAME') ? APP_NAME : 'Instituto Cooperativo') ?></span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ms-auto">
+          <?php foreach ($menu as $archivo => $texto): ?>
+            <?php $activo = ($archivo === $pagina_actual); ?>
+            <li class="nav-item">
+              <a class="nav-link<?= $activo ? ' active fw-semibold text-success' : '' ?>" href="<?= e($archivo) ?>"<?= $activo ? ' aria-current="page"' : '' ?>><?= e($texto) ?></a>
+            </li>
+          <?php endforeach; ?>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

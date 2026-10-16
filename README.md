@@ -46,7 +46,7 @@ Alternativa sin XAMPP: `php -S localhost:8000` dentro de la carpeta.
 ![Estructura modular: header.php](d:\Sesion BENJA FRANCIA\Imágenes\Header php.jpg)
 ![Estructura modular: nav.php](d:\Sesion BENJA FRANCIA\Imágenes\Navbar php.jpg)
 ![Estructura modular: footer.php](d:\Sesion BENJA FRANCIA\Imágenes\Footer php.jpg)
-![Título dinámico en la pestaña](docs/capturas/05-titulo-dinamico.png)
+![Título dinámico en la pestaña](d:\Sesion BENJA FRANCIA\Imágenes\titulo dinamico.jpg)
 ![Ítem activo en el menú](docs/capturas/06-item-activo.png)
 ![Archivo .env.example en el repositorio](docs/capturas/07-env-example.png)
 
