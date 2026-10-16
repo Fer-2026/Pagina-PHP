@@ -1,0 +1,1 @@
+Guardá acá las 7 capturas indicadas en el README (01-localhost.png ... 07-env-example.png).

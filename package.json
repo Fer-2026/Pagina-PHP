@@ -1,0 +1,6 @@
+{
+  "name": "instituto-14-de-abril",
+  "private": true,
+  "scripts": { "format": "prettier --write ." },
+  "devDependencies": { "prettier": "^3.3.0" }
+}
