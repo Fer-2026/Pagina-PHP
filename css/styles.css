@@ -37,3 +37,16 @@ h1,h2,h3{font-weight:700;letter-spacing:-.01em}
 .chip-feriado{border-color:#c62828!important}.chip-receso{background:#fde0e0!important;border-color:#c62828!important}.chip-puente{border:2px dashed #b45309!important}.chip-jornada{border-color:#1e56d6!important}.chip-acto{background:#f6e27a!important}.chip-comision{background:#c9eef0!important}.chip-fin{background:#134a1d!important;color:#fff}.chip-sinact{background:#e1e1e1!important;border-color:#555!important}
 @media print{.topbar,.navbar,.cta-band,#filtro,label[for=filtro]{display:none}}
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+@media (min-width: 992px) and (max-width: 1399px) {
+    .navbar-nav .nav-link {
+    font-size: 0.85rem;
+    padding-left: 0.4rem !important;
+    padding-right: 0.4rem !important;
+    }
+}
+
+.navbar-brand { white-space: normal; max-width: 340px; font-size: 1rem; line-height: 1.2; }
+.dropdown-menu { border: 0; border-radius: 0.75rem; box-shadow: 0 8px 24px rgba(31, 107, 42, 0.18); }
+.dropdown-item.active, .dropdown-item:active { background: var(--blue); color: #fff; }
+.dropdown-item:hover { background: #e6f0e3; }
