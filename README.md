@@ -31,8 +31,8 @@ css/  js/  img/       recursos
    - XAMPP: `C:\xampp\htdocs\`
    - Laragon: `C:\laragon\www\`
 ```bash
-git clone https://github.com/Fer-2026/instituto-14-de-abril.git
-cd instituto-14-de-abril
+git clone https://github.com/Fer-2026/Pagina-PHP.git
+cd Pagina-PHP
 cp .env.example .env
 ```
 3. Iniciá **Apache** (XAMPP: botón *Start*; Laragon: *Iniciar todo*).
