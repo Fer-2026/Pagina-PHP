@@ -10,8 +10,8 @@ El sitio estático del Hito 1 se migró a **PHP**:
 - **Variables de entorno:** `.env` (ignorado por Git) con `.env.example` como plantilla, leído por `config/env.php`.
 
 ## Prototipo de Figma
-- Figma: PEGAR-ENLACE-PUBLICO-AQUÍ
-- Mockups exportados: https://github.com/TU-USUARIO/NOMBRE-REPO-FIGMA
+- Figma: https://github.com/Fer-2026/Dise-o-UI-UX-Mockup-Figma-
+- Mockups exportados: https://www.figma.com/make/UL3GSEQOHBF6XCXKV9COQ8/High-Fidelity-Mockups-for-School?t=qmuPPG4mTDi6oJpE-1
 
 ## Tecnologías
 HTML5, CSS3, Bootstrap 5.3, JavaScript, PHP 8.x, XAMPP / Laragon, Git y GitHub, Prettier.
@@ -31,7 +31,7 @@ css/  js/  img/       recursos
    - XAMPP: `C:\xampp\htdocs\`
    - Laragon: `C:\laragon\www\`
 ```bash
-git clone https://github.com/TU-USUARIO/instituto-14-de-abril.git
+git clone https://github.com/Fer-2026/instituto-14-de-abril.git
 cd instituto-14-de-abril
 cp .env.example .env
 ```
@@ -42,13 +42,13 @@ cp .env.example .env
 Alternativa sin XAMPP: `php -S localhost:8000` dentro de la carpeta.
 
 ## Evidencia de funcionamiento
-![Servidor local ejecutándose (localhost)](d:\Sesion BENJA FRANCIA\Imágenes\Captura pagina php.jpg)
-![Estructura modular: header.php](d:\Sesion BENJA FRANCIA\Imágenes\Header php.jpg)
-![Estructura modular: nav.php](d:\Sesion BENJA FRANCIA\Imágenes\Navbar php.jpg)
-![Estructura modular: footer.php](d:\Sesion BENJA FRANCIA\Imágenes\Footer php.jpg)
-![Título dinámico en la pestaña](d:\Sesion BENJA FRANCIA\Imágenes\titulo dinamico.jpg)
-![Ítem activo en el menú](d:\Sesion BENJA FRANCIA\Imágenes\menu php.jpg)
-![Archivo .env.example en el repositorio](d:\Sesion BENJA FRANCIA\Imágenes\.env example php.jpg)
+![Servidor local ejecutándose (localhost)](docs/capturas/01-localhost.jpg)
+![Estructura modular: header.php](docs/capturas/02-header.jpg)
+![Estructura modular: nav.php](docs/capturas/03-nav.jpg)
+![Estructura modular: footer.php](docs/capturas/04-footer.jpg)
+![Título dinámico en la pestaña](docs/capturas/05-titulo-dinamico.jpg)
+![Ítem activo en el menú](docs/capturas/06-item-activo.jpg)
+![Archivo .env.example en el repositorio](docs/capturas/07-env-example.jpg)
 
 ## Flujo de Git
 Ramas `feature/maquetacion` y `feature/migracion-php-ssi`, integradas a `main` con Pull Request.
