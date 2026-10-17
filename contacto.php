@@ -1,6 +1,8 @@
 <?php
 $titulo_pagina = "Contacto";
 require_once 'includes/header.php';
+require_once 'includes/nav.php';
+require_once 'includes/nav.php';
 ?>
     <main id="contenido">
 <section class="page-header"><div class="container"><nav aria-label="Ruta"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="index.php">Inicio</a></li><li class="breadcrumb-item active" aria-current="page">Contacto</li></ol></nav><h1>Contacto</h1><p class="lead mb-0">Estamos en Salta capital.</p></div></section><section class="py-5"><div class="container"><h2 class="section-title">Datos de contacto</h2><div class="row g-4"><div class="col-md-6"><ul class="list-unstyled"><li><strong>Dirección:</strong> Caseros 1978, Salta (CP 4400)</li><li><strong>Turno:</strong> mañana</li><li><strong>Teléfonos:</strong> <a href="tel:+543874320675">(0387) 432-0675</a> · <a href="tel:+543875918006">387-591-8006</a></li><li><strong>Correo:</strong> <a href="mailto:<?= e($email_contacto) ?>"><?= e($email_contacto) ?></a></li><li><strong>Cooperativa:</strong> <a href="mailto:cooperativamerica14@gmail.com">cooperativamerica14@gmail.com</a></li></ul><p class="note">Datos tomados de documentos públicos del instituto: confirmá que sigan vigentes.</p></div><div class="col-md-6"><h3 class="h5">Redes sociales</h3><ul><li><a href="https://share.google/0eQSeQQhdelOzPzhW" rel="noopener" target="_blank">Facebook<span class="visually-hidden"> (se abre en otra pestaña)</span></a></li><li><a href="https://www.instagram.com/colegio14deabril/" rel="noopener" target="_blank">Instagram @colegio14deabril<span class="visually-hidden"> (se abre en otra pestaña)</span></a></li></ul></div></div></div></section>

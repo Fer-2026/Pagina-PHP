@@ -47,8 +47,8 @@ Alternativa sin XAMPP: `php -S localhost:8000` dentro de la carpeta.
 ![Estructura modular: nav.php](d:\Sesion BENJA FRANCIA\Imágenes\Navbar php.jpg)
 ![Estructura modular: footer.php](d:\Sesion BENJA FRANCIA\Imágenes\Footer php.jpg)
 ![Título dinámico en la pestaña](d:\Sesion BENJA FRANCIA\Imágenes\titulo dinamico.jpg)
-![Ítem activo en el menú](docs/capturas/06-item-activo.png)
-![Archivo .env.example en el repositorio](docs/capturas/07-env-example.png)
+![Ítem activo en el menú](d:\Sesion BENJA FRANCIA\Imágenes\menu php.jpg)
+![Archivo .env.example en el repositorio](d:\Sesion BENJA FRANCIA\Imágenes\.env example php.jpg)
 
 ## Flujo de Git
 Ramas `feature/maquetacion` y `feature/migracion-php-ssi`, integradas a `main` con Pull Request.
