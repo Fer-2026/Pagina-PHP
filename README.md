@@ -24,7 +24,6 @@ css/  js/  img/       recursos
 *.php                 10 vistas
 .env.example          plantilla de variables
 ```
-
 ## Instalación y ejecución local
 1. Instalá **XAMPP** (o **Laragon**) con PHP 8.x.
 2. Cloná el repositorio dentro de la carpeta del servidor:
