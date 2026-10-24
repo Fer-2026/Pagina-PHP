@@ -55,3 +55,13 @@ Ramas `feature/maquetacion` y `feature/migracion-php-ssi`, integradas a `main` c
 
 ## Fuentes
 Datos del instituto: sitios públicos y su perfil de Instagram. Los nombres del equipo docente son ficticios (maqueta). Agenda: PDF institucional 2026.
+
+## TP6: Diseño y creación del esquema relacional en MySQL
+
+La base de datos del proyecto está en la carpeta [`tp6/`](tp6/):
+
+- [`NORMALIZACION.md`](tp6/NORMALIZACION.md): normalización paso a paso (1FN, 2FN, 3FN), tablas con claves y diagrama entidad-relación.
+- [`schema.sql`](tp6/schema.sql): creación de la base `instituto_14_abril` con 9 tablas (roles, usuarios, tipos de evento, años, eventos, relación evento-año, asuntos, estados y consultas), claves primarias y foráneas, campos de auditoría e índices.
+- [`consultas.sql`](tp6/consultas.sql): inserciones, `SELECT` con `WHERE`, `ORDER BY` e `INNER JOIN`, `UPDATE` y `DELETE`.
+
+Instrucciones de ejecución y capturas en [`tp6/README.md`](tp6/README.md).
