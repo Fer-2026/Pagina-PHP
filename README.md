@@ -35,7 +35,7 @@ cd Pagina-PHP
 cp .env.example .env
 ```
 3. Iniciá **Apache** (XAMPP: botón *Start*; Laragon: *Iniciar todo*).
-4. Abrí http://localhost/instituto-14-de-abril/
+4. Abrí http://localhost/instituto-php/
 5. Edit­á `.env` si querés cambiar el nombre, el correo o el entorno.
 
 Alternativa sin XAMPP: `php -S localhost:8000` dentro de la carpeta.
@@ -54,3 +54,14 @@ Ramas `feature/maquetacion` y `feature/migracion-php-ssi`, integradas a `main` c
 
 ## Fuentes
 Datos del instituto: sitios públicos y su perfil de Instagram. Los nombres del equipo docente son ficticios (maqueta). Agenda: PDF institucional 2026.
+
+## TP6: Diseño y creación del esquema relacional en MySQL
+
+El TP6 está en la carpeta [`Desktop/Fer/instituto-php/tp6/`](Desktop/Fer/instituto-php/tp6/):
+
+- [`NORMALIZACION.md`](Desktop/Fer/instituto-php/tp6/NORMALIZACION.md): normalización paso a paso (1FN, 2FN, 3FN), tablas con claves y diagrama entidad-relación.
+- [`schema.sql`](Desktop/Fer/instituto-php/tp6/schema.sql): creación de la base `instituto_14_abril` con 9 tablas, claves primarias y foráneas, campos de auditoría e índices.
+- [`consultas.sql`](Desktop/Fer/instituto-php/tp6/consultas.sql): inserciones, `SELECT` con `WHERE`, `ORDER BY` e `INNER JOIN`, `UPDATE` y `DELETE`.
+- Capturas de evidencia: [`tp6/docs/capturas/`](Desktop/Fer/instituto-php/tp6/docs/capturas/).
+
+Instrucciones de ejecución en [`tp6/README.md`](Desktop/Fer/instituto-php/tp6/README.md).

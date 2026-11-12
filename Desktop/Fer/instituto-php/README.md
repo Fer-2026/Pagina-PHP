@@ -10,8 +10,8 @@ El sitio estático del Hito 1 se migró a **PHP**:
 - **Variables de entorno:** `.env` (ignorado por Git) con `.env.example` como plantilla, leído por `config/env.php`.
 
 ## Prototipo de Figma
-- Figma: PEGAR-ENLACE-PUBLICO-AQUÍ
-- Mockups exportados: https://github.com/TU-USUARIO/NOMBRE-REPO-FIGMA
+- Figma: https://github.com/Fer-2026/Dise-o-UI-UX-Mockup-Figma-
+- Mockups exportados: https://www.figma.com/make/UL3GSEQOHBF6XCXKV9COQ8/High-Fidelity-Mockups-for-School?t=qmuPPG4mTDi6oJpE-1
 
 ## Tecnologías
 HTML5, CSS3, Bootstrap 5.3, JavaScript, PHP 8.x, XAMPP / Laragon, Git y GitHub, Prettier.
@@ -22,6 +22,7 @@ config/env.php        carga de variables de entorno
 includes/             header.php, nav.php, footer.php
 css/  js/  img/       recursos
 *.php                 10 vistas
+tp6/                  normalización, schema.sql y consultas.sql
 .env.example          plantilla de variables
 ```
 
@@ -31,12 +32,12 @@ css/  js/  img/       recursos
    - XAMPP: `C:\xampp\htdocs\`
    - Laragon: `C:\laragon\www\`
 ```bash
-git clone https://github.com/TU-USUARIO/instituto-14-de-abril.git
-cd instituto-14-de-abril
+git clone https://github.com/Fer-2026/Pagina-PHP.git
+cd Pagina-PHP
 cp .env.example .env
 ```
 3. Iniciá **Apache** (XAMPP: botón *Start*; Laragon: *Iniciar todo*).
-4. Abrí http://localhost/instituto-14-de-abril/
+4. Abrí http://localhost/instituto-php/
 5. Edit­á `.env` si querés cambiar el nombre, el correo o el entorno.
 
 Alternativa sin XAMPP: `php -S localhost:8000` dentro de la carpeta.
