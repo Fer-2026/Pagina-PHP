@@ -65,3 +65,16 @@ El TP6 está en la carpeta [`Desktop/Fer/instituto-php/tp6/`](Desktop/Fer/instit
 - Capturas de evidencia: [`tp6/docs/capturas/`](Desktop/Fer/instituto-php/tp6/docs/capturas/).
 
 Instrucciones de ejecución en [`tp6/README.md`](Desktop/Fer/instituto-php/tp6/README.md).
+
+## TP8: Manejo de estado, sesiones y autenticación
+
+La implementación completa del TP8 está integrada en [`Desktop/Fer/instituto-php/`](Desktop/Fer/instituto-php/). Incluye:
+
+- `registro.php`, `login.php`, `logout.php`, `dashboard.php` y `admin_panel.php`.
+- `auth_guard.php` para exigir sesión y restringir el rol `admin`.
+- `sql/usuarios_tp8.sql` con la tabla `usuarios` y las cuentas semilla.
+- Capturas de evidencia en [`Desktop/Fer/instituto-php/docs/capturas/tp8/`](Desktop/Fer/instituto-php/docs/capturas/tp8/).
+- Detalle de las pruebas en [`Desktop/Fer/instituto-php/docs/tp8-pruebas.md`](Desktop/Fer/instituto-php/docs/tp8-pruebas.md).
+- Documentación completa en [`Desktop/Fer/instituto-php/README.md`](Desktop/Fer/instituto-php/README.md).
+
+Cuentas de prueba: `admin@instituto.edu.ar` / `Admin123!` y `usuario@instituto.edu.ar` / `Usuario123!`.
