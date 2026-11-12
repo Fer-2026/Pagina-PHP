@@ -1,7 +1,7 @@
     <section class="cta-band">
       <div class="container d-flex flex-wrap justify-content-between align-items-center gap-3">
         <h2 class="h4 mb-0">¿Querés que tu hijo o hija estudie con nosotros?</h2>
-        <a class="btn btn-accent btn-lg" href="inscripcion.php">Consultá la inscripción</a>
+        <a class="btn btn-accent btn-lg" href="<?= e(url('inscripcion.php')) ?>">Consultá la inscripción</a>
       </div>
     </section>
     <footer class="footer">
@@ -14,6 +14,6 @@
       </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="<?= e(url('js/main.js?v=tp8')) ?>"></script>
   </body>
 </html>
