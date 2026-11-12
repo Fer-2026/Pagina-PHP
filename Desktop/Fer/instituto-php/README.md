@@ -66,3 +66,150 @@ La base de datos del proyecto está en la carpeta [`tp6/`](tp6/):
 - [`consultas.sql`](tp6/consultas.sql): inserciones, `SELECT` con `WHERE`, `ORDER BY` e `INNER JOIN`, `UPDATE` y `DELETE`.
 
 Instrucciones de ejecución y capturas en [`tp6/README.md`](tp6/README.md).
+
+## TP8: Manejo de estado, sesiones y autenticación
+
+El TP8 está integrado al sitio principal: se agregó registro de usuarios, inicio y cierre de sesión, un guardián reutilizable y dos paneles protegidos por rol. La misma base `instituto_db` del CRUD de cursos se usa para la tabla `usuarios`.
+
+### Archivos principales
+
+| Archivo | Función |
+|---|---|
+| [`sql/usuarios_tp8.sql`](sql/usuarios_tp8.sql) | Crea `usuarios` y carga las cuentas semilla con contraseñas bcrypt. |
+| [`config/sesion.php`](config/sesion.php) | Inicia la sesión, configura la cookie, calcula `BASE_URL` y ofrece helpers CSRF y de autenticación. |
+| [`auth_guard.php`](auth_guard.php) | Verifica `$_SESSION['usuario_id']`, redirige al login y restringe el rol `admin`. |
+| [`registro.php`](registro.php) | Sanitiza y valida los datos, comprueba el correo único y guarda `password_hash(..., PASSWORD_BCRYPT)`. |
+| [`login.php`](login.php) | Usa `password_verify()`, regenera el ID de sesión y guarda `usuario_id`, `usuario_nombre` y `rol`. |
+| [`logout.php`](logout.php) | Ejecuta `session_unset()`, elimina la cookie y destruye la sesión. |
+| [`dashboard.php`](dashboard.php) | Vista protegida para cualquier usuario autenticado; muestra los datos de `$_SESSION`. |
+| [`admin_panel.php`](admin_panel.php) | Vista restringida al rol `admin`, con usuarios, contadores y accesos. |
+| [`admin/`](admin/) | CRUD de cursos protegido con `define('REQUERIR_ROL', 'admin')`. |
+
+### Estructura de `usuarios`
+
+```sql
+id          INT UNSIGNED AUTO_INCREMENT PRIMARY KEY
+nombre      VARCHAR(100) NOT NULL
+email       VARCHAR(150) NOT NULL UNIQUE
+password    VARCHAR(255) NOT NULL
+rol         VARCHAR(20) NOT NULL DEFAULT 'usuario'  -- admin | usuario
+created_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+```
+
+Además hay un índice sobre `rol` y una restricción `CHECK` para aceptar solamente `admin` o `usuario`.
+
+### Cuentas de prueba
+
+| Rol | Correo | Contraseña |
+|---|---|---|
+| admin | `admin@instituto.edu.ar` | `Admin123!` |
+| usuario | `usuario@instituto.edu.ar` | `Usuario123!` |
+
+Las cuentas `lucia.gomez@example.com` y `martina.rios@example.com` que aparecen en las capturas se crearon desde el formulario de registro durante la prueba. El SQL deja solo las dos cuentas semilla para que la corrección sea reproducible.
+
+### Cómo ejecutar
+
+1. Iniciar **Apache** y **MySQL** desde XAMPP.
+2. Importar el esquema desde phpMyAdmin o por consola:
+
+   ```bash
+   mysql -u root < sql/usuarios_tp8.sql
+   ```
+
+3. Verificar la conexión en [`config/conexion.php`](config/conexion.php): base `instituto_db`, usuario `root` sin contraseña en el entorno local.
+4. Abrir `http://localhost/instituto-php/registro.php` para crear una cuenta o `http://localhost/instituto-php/login.php` para ingresar.
+5. Probar las rutas protegidas `dashboard.php`, `admin_panel.php`, `admin/index.php` y el cierre de sesión en `logout.php`.
+
+### Cumplimiento de los requisitos
+
+| Requisito del TP8 | Implementación |
+|---|---|
+| Tabla `usuarios` con `id`, `nombre`, `email` único, `password` de 255, `rol` y `created_at`. | [`sql/usuarios_tp8.sql`](sql/usuarios_tp8.sql). |
+| Registro con sanitización estricta. | `strip_tags()`, normalización de espacios, `FILTER_SANITIZE_EMAIL`, validación de nombre, correo y contraseña en [`registro.php`](registro.php). |
+| Correo único. | Consulta preparada antes del `INSERT` y restricción `UNIQUE` en la base. |
+| Contraseña con `password_hash(..., PASSWORD_BCRYPT)`. | [`registro.php`](registro.php), línea del hash; la base guarda hashes de 60 caracteres con prefijo `$2y$10$`. |
+| Consultas preparadas. | `PDO::prepare()` y `execute()` en registro, login, dashboard, panel y CRUD. |
+| Login con `password_verify()`. | [`login.php`](login.php), comparación del hash y mensaje genérico ante credenciales incorrectas. |
+| `session_start()`. | Se centraliza en [`config/sesion.php`](config/sesion.php), incluido antes de cualquier salida; `login.php` además verifica `session_status()`. |
+| `session_regenerate_id(true)` y variables de sesión. | [`login.php`](login.php): se regenera el ID y se guardan `usuario_id`, `usuario_nombre`, `rol`, correo y último login. |
+| Redirección al panel protegido. | El administrador va a `admin_panel.php`; el usuario común va a `dashboard.php`. |
+| `auth_guard.php` con `$_SESSION['usuario_id']`. | [`auth_guard.php`](auth_guard.php): sin sesión redirige a `login.php?error=acceso_denegado`. |
+| Proteger al menos dos vistas. | `dashboard.php`, `admin_panel.php` y las cuatro rutas del CRUD de cursos. |
+| `admin_panel.php` solo para `admin`. | `define('REQUERIR_ROL', 'admin')` antes de incluir el guardián; un usuario común es redirigido a `dashboard.php?error=sin_permiso`. |
+| Logout con `session_unset()`, cookie y `session_destroy()`. | [`logout.php`](logout.php), con redirección a `login.php?logout=ok`. |
+| Integración en la app principal. | Header, navbar y footer usan `BASE_URL`; el topbar muestra los accesos de autenticación y el CRUD usa el mismo layout del sitio. |
+
+### Medidas de seguridad adicionales
+
+- Token CSRF con `hash_equals()` en registro, login y formularios del CRUD.
+- Escape de salida con `e()` (`htmlspecialchars`) en todas las vistas.
+- Cookie de sesión con `HttpOnly`, `SameSite=Lax` y ruta `/instituto-php/`.
+- Mensaje genérico «Correo o contraseña incorrectos» para no revelar si un correo existe.
+- El rol del formulario público no se toma de `$_POST`: siempre se asigna `usuario`.
+- `main.js` solo intercepta formularios estáticos sin `action`; los formularios reales de registro, login y CRUD se envían al servidor.
+
+### Capturas de evidencia
+
+**1. Sitio como invitado, con accesos a Ingresar y Crear cuenta**
+
+![Home como invitado](docs/capturas/tp8/01-home-invitado.png)
+
+**2. Formulario de registro completo**
+
+![Formulario de registro](docs/capturas/tp8/02-registro-formulario.png)
+
+**3. Correo duplicado rechazado**
+
+![Error de correo duplicado](docs/capturas/tp8/03-registro-error-duplicado.png)
+
+**4. Registro exitoso y aviso para iniciar sesión**
+
+![Registro exitoso](docs/capturas/tp8/04-registro-exitoso.png)
+
+**5. Formulario de login**
+
+![Formulario de login](docs/capturas/tp8/05-login-formulario.png)
+
+**6. Credenciales incorrectas**
+
+![Error de login](docs/capturas/tp8/06-login-error.png)
+
+**7. Panel del usuario con las variables de `$_SESSION`**
+
+![Dashboard del usuario](docs/capturas/tp8/07-dashboard-usuario.png)
+
+**8. Un usuario común no puede entrar a `admin_panel.php`**
+
+![Restricción por rol](docs/capturas/tp8/08-rol-denegado.png)
+
+**9. Logout correcto**
+
+![Logout correcto](docs/capturas/tp8/09-logout-exitoso.png)
+
+**10. `dashboard.php` sin sesión redirige al login**
+
+![Acceso denegado sin sesión](docs/capturas/tp8/10-acceso-denegado.png)
+
+**11. Panel de administración con usuarios y contadores**
+
+![Panel de administración](docs/capturas/tp8/11-panel-admin.png)
+
+**12. CRUD de cursos integrado y protegido**
+
+![Cursos en el panel admin](docs/capturas/tp8/12-cursos-admin.png)
+
+**13. Header con sesión de administrador**
+
+![Home con sesión admin](docs/capturas/tp8/13-home-admin.png)
+
+**14. Estructura de la tabla `usuarios` en phpMyAdmin**
+
+![Estructura de usuarios](docs/capturas/tp8/14-bd-estructura.png)
+
+**15. Usuarios guardados con hash bcrypt, rol y fecha de alta**
+
+![Datos de usuarios con hash](docs/capturas/tp8/15-bd-datos-hash.png)
+
+### Pruebas y resultados
+
+El detalle de los 20 casos probados, los redirects del guardián, la regeneración del ID de sesión, las cookies y el CRUD está en [`docs/tp8-pruebas.md`](docs/tp8-pruebas.md).
