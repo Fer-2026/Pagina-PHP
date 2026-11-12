@@ -146,7 +146,7 @@ Las cuentas `lucia.gomez@example.com` y `martina.rios@example.com` que aparecen 
 - Cookie de sesión con `HttpOnly`, `SameSite=Lax` y ruta `/instituto-php/`.
 - Mensaje genérico «Correo o contraseña incorrectos» para no revelar si un correo existe.
 - El rol del formulario público no se toma de `$_POST`: siempre se asigna `usuario`.
-- `main.js` solo intercepta formularios estáticos sin `action`; los formularios reales de registro, login y CRUD se envían al servidor.
+- `main.js` solo intercepta los formularios estáticos de la maqueta (sin `action` o con `action="#"`); los formularios reales de registro, login y CRUD se envían al servidor.
 
 ### Capturas de evidencia
 
