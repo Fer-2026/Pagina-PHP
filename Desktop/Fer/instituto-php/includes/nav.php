@@ -10,6 +10,7 @@ $menu = [
     ]],
     ['Académico', [
         ['Propuesta educativa', 'propuesta-educativa.php'],
+        ['Cursos y talleres', 'cursos.php'],
         ['Plan de estudios', 'plan-de-estudios.php'],
         ['Ciencias Naturales', 'ciencias-naturales.php'],
     ]],

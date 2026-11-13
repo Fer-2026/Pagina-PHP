@@ -18,10 +18,14 @@ HTML5, CSS3, Bootstrap 5.3, JavaScript, PHP 8.x, XAMPP / Laragon, Git y GitHub, 
 
 ## Estructura
 ```
-config/env.php        carga de variables de entorno
+api/                  endpoint JSON de cursos (TP9)
+config/               env.php, conexion.php y sesion.php
 includes/             header.php, nav.php, footer.php
-css/  js/  img/       recursos
-*.php                 10 vistas
+admin/                CRUD de cursos protegido (TP7 + TP8)
+css/  js/  img/       recursos y buscador asincrónico (TP9)
+*.php                 vistas públicas, registro, login, paneles, cursos y logout
+sql/                  usuarios_tp8.sql y cursos_tp9.sql
+docs/                 capturas y pruebas de TP8 y TP9
 tp6/                  normalización, schema.sql y consultas.sql
 .env.example          plantilla de variables
 ```
@@ -213,3 +217,82 @@ Las cuentas `lucia.gomez@example.com` y `martina.rios@example.com` que aparecen 
 ### Pruebas y resultados
 
 El detalle de los 20 casos probados, los redirects del guardián, la regeneración del ID de sesión, las cookies y el CRUD está en [`docs/tp8-pruebas.md`](docs/tp8-pruebas.md).
+
+## TP9: Comunicación asincrónica y APIs (AJAX & JSON)
+
+El TP9 está integrado al sitio con una página pública de **Cursos y talleres** que consulta la tabla `cursos` mediante `fetch()` y actualiza únicamente los resultados, sin recargar el documento.
+
+### Funcionalidad
+
+- **Endpoint propio:** `api/cursos.php` responde JSON para el listado, la búsqueda por texto y el detalle por ID.
+- **Buscador en vivo:** `cursos.php` + `js/cursos.js`; el evento `input` se procesa con un debounce de 300 ms.
+- **Estados de interfaz:** carga, resultados, sin coincidencias y error de red.
+- **Integración:** enlace en **Académico → Cursos y talleres** y acceso desde `propuesta-educativa.php`.
+- **Base de datos:** tabla `cursos` del TP7; `sql/cursos_tp9.sql` deja el esquema y datos de ejemplo.
+
+### Endpoint
+
+| Operación | Ejemplo | Éxito |
+|---|---|---|
+| Listar | `GET /instituto-php/api/cursos.php` | `200` + arreglo `data` |
+| Buscar | `GET /instituto-php/api/cursos.php?q=web` | `200` + coincidencias |
+| Detalle | `GET /instituto-php/api/cursos.php?id=1` | `200` + curso |
+| Sin coincidencias | `GET /instituto-php/api/cursos.php?q=robotica` | `200` + `data: []` |
+
+Códigos previstos: `200` éxito, `400` parámetros inválidos, `404` ID inexistente, `405` método distinto de GET y `500` error de consulta. Todas las respuestas usan `Content-Type: application/json; charset=utf-8` y `json_encode()`.
+
+Ejemplo de respuesta:
+
+```json
+{
+  "status": "success",
+  "data": [
+    {
+      "id": 1,
+      "titulo": "Desarrollo Web Frontend",
+      "descripcion": "Curso enfocado en HTML5, CSS3, JavaScript moderno y frameworks orientados a componentes.",
+      "cupos": 30
+    }
+  ],
+  "count": 1,
+  "query": "web",
+  "limit": 20
+}
+```
+
+### Cumplimiento de los requisitos
+
+| Requisito del TP9 | Implementación |
+|---|---|
+| Endpoint independiente | `api/cursos.php` |
+| Respuesta JSON | `header('Content-Type: application/json; charset=utf-8')` y `json_encode()` |
+| PDO + consultas preparadas | `prepare()` con parámetros `:titulo`, `:descripcion` e `:id` |
+| Códigos HTTP | `200`, `400`, `404`, `405` y `500` |
+| Evento del usuario | `input` con debounce, `submit` del formulario y `click` en **Limpiar** |
+| Fetch API | `fetch()` con `AbortController` y cabecera `Accept: application/json` |
+| Manejo de errores | `try/catch`, validación de `response.ok` y alerta visible |
+| Procesar JSON | `await response.json()` y validación de `status` |
+| Actualizar solo una sección | `#resultadosCursos` y `#estadoCursos`; no se recarga la página |
+| Integración | Navegación, diseño compartido, CTA y base `instituto_db` |
+
+### Capturas de evidencia
+
+1. Página inicial con los tres cursos: [01-cursos-inicial.png](docs/capturas/tp9/01-cursos-inicial.png)
+2. Búsqueda “web” sin recargar: [02-busqueda-web.png](docs/capturas/tp9/02-busqueda-web.png)
+3. Búsqueda sin coincidencias: [03-busqueda-sin-resultados.png](docs/capturas/tp9/03-busqueda-sin-resultados.png)
+4. Error de red simulado: [04-error-de-red-simulado.png](docs/capturas/tp9/04-error-de-red-simulado.png)
+5. JSON `200`: [05-api-json-200.png](docs/capturas/tp9/05-api-json-200.png)
+6. JSON `404`: [06-api-json-404.png](docs/capturas/tp9/06-api-json-404.png)
+7. JSON `400`: [07-api-json-400.png](docs/capturas/tp9/07-api-json-400.png)
+8. Tabla `cursos` en phpMyAdmin: [08-phpmyadmin-cursos.png](docs/capturas/tp9/08-phpmyadmin-cursos.png)
+
+### Pruebas y resultados
+
+El detalle de los casos de endpoint, las pruebas de Fetch, el intento de inyección SQL, la prueba de error de red y las capturas está en [`docs/tp9-pruebas.md`](docs/tp9-pruebas.md).
+
+### Cómo ejecutar
+
+1. Iniciar Apache y MySQL.
+2. Abrir `http://localhost/instituto-php/cursos.php`.
+3. Buscar `web`, `php` o `robotica`, y probar **Buscar** y **Limpiar**.
+4. Para una instalación limpia, importar [`sql/cursos_tp9.sql`](sql/cursos_tp9.sql).
