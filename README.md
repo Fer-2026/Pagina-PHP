@@ -90,3 +90,16 @@ La implementación completa del TP9 está integrada en [`Desktop/Fer/instituto-p
 - Capturas de evidencia en [`Desktop/Fer/instituto-php/docs/capturas/tp9/`](Desktop/Fer/instituto-php/docs/capturas/tp9/).
 - Detalle de las pruebas en [`Desktop/Fer/instituto-php/docs/tp9-pruebas.md`](Desktop/Fer/instituto-php/docs/tp9-pruebas.md).
 - Documentación completa en [`Desktop/Fer/instituto-php/README.md`](Desktop/Fer/instituto-php/README.md).
+
+## TP10: Patrón MVC e introducción a frameworks
+
+La implementación completa del TP10 está integrada en [`Desktop/Fer/instituto-php/`](Desktop/Fer/instituto-php/). Incluye:
+
+- **Parte A:** CRUD de cursos refactorizado a MVC nativo en `app/Models/Curso.php`, `app/Controllers/CursoController.php` y `app/Views/cursos/`. `admin/index.php` quedó como front controller y las URL anteriores se conservan mediante capas de compatibilidad.
+- **Parte B:** proyecto **CodeIgniter 4.7.6** en `tp10/framework/` con el módulo independiente **Novedades**, ruta, controlador, modelo con Query Builder, vistas con layout y endpoint JSON.
+- Tabla `novedades` y datos de ejemplo en `sql/novedades_tp10.sql`.
+- Capturas de evidencia en [`Desktop/Fer/instituto-php/docs/capturas/tp10/`](Desktop/Fer/instituto-php/docs/capturas/tp10/).
+- Detalle de pruebas en [`Desktop/Fer/instituto-php/docs/tp10-pruebas.md`](Desktop/Fer/instituto-php/docs/tp10-pruebas.md).
+- Documentación completa en [`Desktop/Fer/instituto-php/README.md`](Desktop/Fer/instituto-php/README.md).
+
+Commit descriptivo del TP10: `feat: refactorizacion MVC e implementacion de modulo con framework`.

@@ -82,6 +82,7 @@ require_once __DIR__ . '/includes/header.php';
             <h2 class="h5 mb-0">Usuarios del sistema</h2>
             <div class="d-flex flex-wrap gap-2">
               <a class="btn btn-sm btn-outline-dark" href="<?= e(url('admin/index.php')) ?>">Gestionar cursos</a>
+              <a class="btn btn-sm btn-outline-success" href="<?= e(url('tp10/framework/public/novedades')) ?>">Módulo Novedades (TP10)</a>
               <a class="btn btn-sm btn-outline-secondary" href="<?= e(url('dashboard.php')) ?>">Mi panel</a>
               <a class="btn btn-sm btn-danger" href="<?= e(url('logout.php')) ?>">Cerrar sesión</a>
             </div>
