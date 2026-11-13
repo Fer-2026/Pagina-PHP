@@ -78,3 +78,15 @@ La implementación completa del TP8 está integrada en [`Desktop/Fer/instituto-p
 - Documentación completa en [`Desktop/Fer/instituto-php/README.md`](Desktop/Fer/instituto-php/README.md).
 
 Cuentas de prueba: `admin@instituto.edu.ar` / `Admin123!` y `usuario@instituto.edu.ar` / `Usuario123!`.
+
+## TP9: Comunicación asincrónica y APIs (AJAX & JSON)
+
+La implementación completa del TP9 está integrada en [`Desktop/Fer/instituto-php/`](Desktop/Fer/instituto-php/). Incluye:
+
+- `cursos.php` y `js/cursos.js`: buscador público con Fetch API, debounce, estados de carga y manejo de errores.
+- `api/cursos.php`: endpoint independiente con PDO, consultas preparadas, `json_encode()` y códigos HTTP `200`, `400`, `404`, `405` y `500`.
+- `sql/cursos_tp9.sql`: esquema y datos de ejemplo de la tabla `cursos`.
+- Integración en la navegación y en `propuesta-educativa.php`.
+- Capturas de evidencia en [`Desktop/Fer/instituto-php/docs/capturas/tp9/`](Desktop/Fer/instituto-php/docs/capturas/tp9/).
+- Detalle de las pruebas en [`Desktop/Fer/instituto-php/docs/tp9-pruebas.md`](Desktop/Fer/instituto-php/docs/tp9-pruebas.md).
+- Documentación completa en [`Desktop/Fer/instituto-php/README.md`](Desktop/Fer/instituto-php/README.md).
