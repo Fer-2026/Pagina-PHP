@@ -62,7 +62,7 @@ php -l app/Models/NovedadModel.php
 Abrir:
 
 - `http://localhost/instituto-php/tp10/framework/public/novedades`
-- `http://localhost/instituto-php/tp10/framework/public/novedades/8`
+- `http://localhost/instituto-php/tp10/framework/public/novedades/4`
 - `http://localhost/instituto-php/tp10/framework/public/api/novedades`
 
 El detalle de las pruebas y las capturas está en `../../docs/tp10-pruebas.md`.

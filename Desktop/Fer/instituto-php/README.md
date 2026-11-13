@@ -391,7 +391,7 @@ Se creó el proyecto [`tp10/framework/`](tp10/framework/) con **CodeIgniter 4.7.
 |---|---|
 | `http://localhost/instituto-php/tp10/framework/public/` | Inicio del proyecto framework; muestra el módulo |
 | `http://localhost/instituto-php/tp10/framework/public/novedades` | Listado y búsqueda por `?q=` |
-| `http://localhost/instituto-php/tp10/framework/public/novedades/8` | Detalle de una novedad |
+| `http://localhost/instituto-php/tp10/framework/public/novedades/4` | Detalle de una novedad |
 | `http://localhost/instituto-php/tp10/framework/public/api/novedades` | Endpoint JSON con las novedades publicadas |
 
 El listado incluye búsqueda por título, resumen o contenido; el detalle usa un layout con `extend()`, `section()` y `endSection()`; el endpoint JSON responde con `status`, `count` y `data`.

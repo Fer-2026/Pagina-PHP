@@ -148,7 +148,7 @@ http://localhost/instituto-php/tp10/framework/public/
 | 1 | `php spark routes` | Muestra las 4 rutas configuradas. |
 | 2 | Abrir `/novedades` | `200`; 4 novedades ordenadas por fecha. Captura `08-framework-listado.png`. |
 | 3 | Buscar `?q=taller` | `200`; 2 coincidencias por título/contenido. |
-| 4 | Abrir `/novedades/8` | `200`; detalle completo. Captura `09-framework-detalle.png`. |
+| 4 | Abrir `/novedades/4` | `200`; detalle completo. Captura `09-framework-detalle.png`. |
 | 5 | Abrir `/api/novedades` | `200`; `Content-Type: application/json`; `count: 4`. Captura `10-framework-api-json.png`. |
 | 6 | Abrir `/novedades/9999` | `404` con la página de error del framework. |
 | 7 | Ver la tabla `novedades` en phpMyAdmin | 4 filas con título, resumen, contenido, fecha y estado. Captura `11-bd-novedades.png`. |
@@ -162,11 +162,11 @@ Ejemplo de respuesta del endpoint:
   "count": 4,
   "data": [
     {
-      "id": 8,
+      "id": 4,
       "titulo": "Muestra anual de Educación Física",
       "resumen": "Actividades recreativas y deportivas para compartir una jornada en comunidad.",
       "fecha": "2026-11-20",
-      "url": "http://localhost/instituto-php/tp10/framework/public/novedades/8"
+      "url": "http://localhost/instituto-php/tp10/framework/public/novedades/4"
     }
   ]
 }
@@ -211,7 +211,7 @@ php -l tp10/framework/app/Controllers/Novedades.php
 
 ## Capturas
 
-Las imágenes están en [`docs/capturas/tp10/`](capturas/tp10/).
+Las imágenes están en [`capturas/tp10/`](capturas/tp10/).
 
 1. [Listado nativo](capturas/tp10/01-nativo-listado.png)
 2. [Formulario de alta nativo](capturas/tp10/02-nativo-crear.png)

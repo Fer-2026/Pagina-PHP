@@ -16,8 +16,9 @@ CREATE TABLE IF NOT EXISTS novedades (
     KEY idx_novedades_publicado_fecha (publicado, fecha)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT IGNORE INTO novedades (titulo, resumen, contenido, fecha, publicado) VALUES
+INSERT IGNORE INTO novedades (id, titulo, resumen, contenido, fecha, publicado) VALUES
 (
+    1,
     'Nueva edición de la Feria de Ciencias',
     'Estudiantes de todos los cursos presentarán sus proyectos en la muestra anual.',
     'La Feria de Ciencias del Instituto Cooperativo 14 de Abril N° 8001 se realizará el viernes 23 de octubre. Las y los estudiantes expondrán proyectos de investigación, robótica, cuidado del ambiente y tecnología aplicada. La comunidad educativa está invitada a recorrer los stands y participar de las demostraciones.',
@@ -25,6 +26,7 @@ INSERT IGNORE INTO novedades (titulo, resumen, contenido, fecha, publicado) VALU
     1
 ),
 (
+    2,
     'Inscripciones abiertas para los talleres 2027',
     'Ya se encuentra disponible el formulario de inscripción a los talleres extracurriculares.',
     'Los talleres de programación, robótica, comunicación y deportes abren su inscripción para el ciclo lectivo 2027. Las familias interesadas pueden acercarse a la secretaría del instituto o completar el formulario de inscripción publicado en el sitio. Los cupos son limitados y se asignan por orden de inscripción.',
@@ -32,6 +34,7 @@ INSERT IGNORE INTO novedades (titulo, resumen, contenido, fecha, publicado) VALU
     1
 ),
 (
+    3,
     'Taller de programación web para estudiantes',
     'Un espacio para crear páginas y aplicaciones con HTML, CSS, PHP y bases de datos.',
     'El taller de programación web propone un recorrido práctico por el desarrollo de aplicaciones: estructura HTML, estilos CSS, lógica con JavaScript, programación del lado del servidor con PHP y almacenamiento en MySQL. Los encuentros se realizan en el laboratorio de informática y culminan con un proyecto integrador.',
@@ -39,9 +42,12 @@ INSERT IGNORE INTO novedades (titulo, resumen, contenido, fecha, publicado) VALU
     1
 ),
 (
+    4,
     'Muestra anual de Educación Física',
     'Actividades recreativas y deportivas para compartir una jornada en comunidad.',
     'La muestra anual de Educación Física se llevará a cabo en el predio deportivo del instituto. Habrá demostraciones de básquet, vóleibol, atletismo y juegos cooperativos. Se recomienda a las familias asistir con ropa cómoda y respetar los horarios informados por los profesores.',
     '2026-11-20',
     1
 );
+
+ALTER TABLE novedades AUTO_INCREMENT = 5;
