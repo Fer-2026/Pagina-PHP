@@ -19,17 +19,18 @@ HTML5, CSS3, Bootstrap 5.3, JavaScript, PHP 8.x, XAMPP / Laragon, Git y GitHub, 
 ## Estructura
 ```
 api/                  endpoint JSON de cursos (TP9)
+app/                  Models, Controllers y Views del CRUD en MVC nativo (TP10)
 config/               env.php, conexion.php y sesion.php
 includes/             header.php, nav.php, footer.php
-admin/                CRUD de cursos protegido (TP7 + TP8)
+admin/                front controller del CRUD de cursos (TP10)
 css/  js/  img/       recursos y buscador asincrónico (TP9)
 *.php                 vistas públicas, registro, login, paneles, cursos y logout
-sql/                  usuarios_tp8.sql y cursos_tp9.sql
-docs/                 capturas y pruebas de TP8 y TP9
+sql/                  usuarios_tp8.sql, cursos_tp9.sql y novedades_tp10.sql
+docs/                 capturas y pruebas de TP8, TP9 y TP10
 tp6/                  normalización, schema.sql y consultas.sql
+tp10/framework/       proyecto CodeIgniter 4 con el módulo Novedades (TP10)
 .env.example          plantilla de variables
 ```
-
 ## Instalación y ejecución local
 1. Instalá **XAMPP** (o **Laragon**) con PHP 8.x.
 2. Cloná el repositorio dentro de la carpeta del servidor:
@@ -47,19 +48,72 @@ cp .env.example .env
 Alternativa sin XAMPP: `php -S localhost:8000` dentro de la carpeta.
 
 ## Evidencia de funcionamiento
-![Servidor local ejecutándose (localhost)](docs/capturas/01-localhost.png)
-![Estructura modular: header.php](docs/capturas/02-header-php.png)
-![Estructura modular: nav.php](docs/capturas/03-nav-php.png)
-![Estructura modular: footer.php](docs/capturas/04-footer-php.png)
-![Título dinámico en la pestaña](docs/capturas/05-titulo-dinamico.png)
-![Ítem activo en el menú](docs/capturas/06-item-activo.png)
-![Archivo .env.example en el repositorio](docs/capturas/07-env-example.png)
+![Servidor local ejecutándose (localhost)](docs/capturas/01-localhost.jpg)
+![Estructura modular: header.php](docs/capturas/02-header.jpg)
+![Estructura modular: nav.php](docs/capturas/03-nav.jpg)
+![Estructura modular: footer.php](docs/capturas/04-footer.jpg)
+![Título dinámico en la pestaña](docs/capturas/05-titulo-dinamico.jpg)
+![Ítem activo en el menú](docs/capturas/06-item-activo.jpg)
+![Archivo .env.example en el repositorio](docs/capturas/07-env-example.jpg)
 
 ## Flujo de Git
 Ramas `feature/maquetacion` y `feature/migracion-php-ssi`, integradas a `main` con Pull Request.
 
 ## Fuentes
 Datos del instituto: sitios públicos y su perfil de Instagram. Los nombres del equipo docente son ficticios (maqueta). Agenda: PDF institucional 2026.
+
+
+
+
+## Clase 5: Procesamiento de formularios y seguridad web
+
+Todo el desarrollo de esta entrega está en la carpeta [`clase5/`](clase5/). Es una copia del sitio modular en PHP (SSI) con dos formularios nuevos que se procesan en el servidor.
+
+### Formulario POST: contacto
+Archivo: [`clase5/contacto.php`](clase5/contacto.php). Campos: nombre, correo electrónico, teléfono (opcional), asunto y mensaje.
+
+- **Sanitización de entradas:** cada dato recibido por `$_POST` pasa por `filter_input()`, `trim()` y la función `limpiar()`, que quita caracteres de control y limita el largo. Nada se usa ni se muestra sin sanitizar.
+- **Prevención de XSS:** todo lo que se muestra en pantalla se escapa con `htmlspecialchars()` (función `e()`), por lo que un `<script>` se ve como texto y no se ejecuta.
+- **Validación en el servidor:** campos obligatorios con `empty()`, correo con `filter_var(FILTER_VALIDATE_EMAIL)`, formato del nombre y del teléfono con expresiones regulares, asunto contra una lista permitida y largo mínimo del mensaje.
+- **Mensajes al usuario:** lista de errores en la parte superior, mensaje de error debajo de cada campo y mensaje de éxito con el resumen de lo recibido.
+- **Persistencia de datos:** si hay errores, los campos completados se conservan para no tener que reescribirlos.
+- **Seguridad adicional:** token CSRF guardado en la sesión y verificado con `hash_equals()`. Tras un envío correcto se redirige a la página (patrón Post/Redirect/Get) para evitar reenvíos al recargar.
+
+### Formulario GET: buscador
+Archivo: [`clase5/buscar.php`](clase5/buscar.php). Parámetros: `q` (texto a buscar) y `tipo` (tipo de evento de la agenda). El buscador está disponible en el menú de todas las páginas.
+
+- Busca en las páginas del sitio y en los eventos de la agenda 2026.
+- `q` se sanitiza con `filter_input()` y `limpiar()`. `tipo` se valida contra una lista permitida: cualquier otro valor se descarta.
+- Mensajes para búsqueda vacía, de menos de 2 caracteres, sin resultados y con resultados.
+
+### Capturas de pantalla
+
+**Validación con campos vacíos**
+![Validación con campos vacíos](clase5/docs/capturas/01-contacto-errores.png)
+
+**Datos conservados después de un error**
+![Datos conservados tras un error](clase5/docs/capturas/02-datos-conservados.png)
+
+**Envío exitoso**
+![Envío exitoso](clase5/docs/capturas/03-envio-exitoso.png)
+
+**Intento de XSS mostrado como texto**
+![Intento de XSS escapado](clase5/docs/capturas/04-xss-escapado.png)
+
+**Búsqueda con resultados**
+![Búsqueda con resultados](clase5/docs/capturas/05-busqueda-resultados.png)
+
+**Búsqueda sin resultados**
+![Búsqueda sin resultados](clase5/docs/capturas/06-busqueda-sin-resultados.png)
+
+**Validación de la búsqueda**
+![Validación de la búsqueda](clase5/docs/capturas/07-busqueda-validacion.png)
+
+**Estructura de la carpeta clase5**
+![Estructura de clase5](clase5/docs/capturas/08-estructura-clase5.png)
+
+### Ejecución local
+Con XAMPP o Laragon iniciado, abrir `http://localhost/instituto-php/clase5/` (requiere PHP 8.x con la extensión `mbstring`, activada por defecto en XAMPP).
 
 ## TP6: Diseño y creación del esquema relacional en MySQL
 
@@ -296,3 +350,101 @@ El detalle de los casos de endpoint, las pruebas de Fetch, el intento de inyecci
 2. Abrir `http://localhost/instituto-php/cursos.php`.
 3. Buscar `web`, `php` o `robotica`, y probar **Buscar** y **Limpiar**.
 4. Para una instalación limpia, importar [`sql/cursos_tp9.sql`](sql/cursos_tp9.sql).
+
+## TP10: Patrón MVC e introducción a frameworks
+
+El TP10 se resolvió en dos partes complementarias: el CRUD de cursos existente se refactorizó a **MVC nativo** y se agregó un **módulo independiente de Novedades** con **CodeIgniter 4**.
+
+### Parte A: CRUD de cursos en MVC nativo
+
+La URL histórica `admin/index.php` se conserva como **front controller**. La lógica se separó en:
+
+```text
+app/
+  autoload.php
+  Models/Curso.php
+  Controllers/CursoController.php
+  Views/cursos/index.php
+  Views/cursos/form.php
+  Views/cursos/eliminar.php
+```
+
+- **Modelo:** `App\Models\Curso` concentra las consultas `SELECT`, `INSERT`, `UPDATE` y `DELETE` con PDO y sentencias preparadas.
+- **Controlador:** `App\Controllers\CursoController` recibe la acción, valida los datos, verifica el token CSRF, llama al modelo y redirige o renderiza la vista.
+- **Vistas:** `app/Views/cursos/*.php` contienen HTML y datos escapados con `e()`; no tienen SQL.
+- **Compatibilidad:** `admin/crear.php`, `admin/editar.php` y `admin/eliminar.php` quedaron como capas delgadas que delegan en el front controller. La eliminación ahora se confirma con `POST` y CSRF.
+- **Acciones:** `listar`, `crear`, `guardar`, `editar`, `actualizar`, `confirmar_eliminar` y `eliminar`.
+
+La cuenta `admin@instituto.edu.ar` / `Admin123!` conserva el acceso restringido al CRUD.
+
+### Parte B: módulo independiente con CodeIgniter 4
+
+Se creó el proyecto [`tp10/framework/`](tp10/framework/) con **CodeIgniter 4.7.6** y el módulo público **Novedades institucionales**. Es independiente del CRUD nativo porque usa su propia tabla, `novedades`.
+
+- **Rutas:** [`app/Config/Routes.php`](tp10/framework/app/Config/Routes.php).
+- **Controlador:** [`app/Controllers/Novedades.php`](tp10/framework/app/Controllers/Novedades.php).
+- **Modelo con Query Builder:** [`app/Models/NovedadModel.php`](tp10/framework/app/Models/NovedadModel.php).
+- **Vistas con layout y secciones:** [`app/Views/layouts/main.php`](tp10/framework/app/Views/layouts/main.php), [`app/Views/novedades/index.php`](tp10/framework/app/Views/novedades/index.php) y [`app/Views/novedades/show.php`](tp10/framework/app/Views/novedades/show.php).
+- **Base de datos:** [`sql/novedades_tp10.sql`](sql/novedades_tp10.sql) crea la tabla y carga 4 novedades de ejemplo.
+
+| Ruta | Función |
+|---|---|
+| `http://localhost/instituto-php/tp10/framework/public/` | Inicio del proyecto framework; muestra el módulo |
+| `http://localhost/instituto-php/tp10/framework/public/novedades` | Listado y búsqueda por `?q=` |
+| `http://localhost/instituto-php/tp10/framework/public/novedades/8` | Detalle de una novedad |
+| `http://localhost/instituto-php/tp10/framework/public/api/novedades` | Endpoint JSON con las novedades publicadas |
+
+El listado incluye búsqueda por título, resumen o contenido; el detalle usa un layout con `extend()`, `section()` y `endSection()`; el endpoint JSON responde con `status`, `count` y `data`.
+
+### Cumplimiento de los requisitos
+
+| Requisito del TP10 | Implementación |
+|---|---|
+| Refactorizar un módulo previo a MVC nativo | CRUD de cursos, antes concentrado en `admin/*.php`. |
+| Carpetas `app/Models`, `app/Views` y `app/Controllers` | Creadas en la raíz del proyecto. |
+| PDO y sentencias preparadas en modelos | `app/Models/Curso.php`. |
+| Manejo de la solicitud en controladores | `app/Controllers/CursoController.php`. |
+| Vistas con HTML limpio | `app/Views/cursos/*.php`. |
+| Framework con rutas, controlador, modelo y vista | CodeIgniter 4.7.6 en `tp10/framework/`. |
+| Modelo con ORM/Query Builder | `NovedadModel` extiende `CodeIgniter\Model` y usa `builder()`. |
+| Vista con motor de plantillas | Layout y secciones de CodeIgniter. |
+| Módulo adicional e independiente | Novedades, con tabla propia, búsqueda, detalle y API JSON. |
+| Proyecto del framework en el repositorio | Carpeta `tp10/framework/` incluida; `vendor/` se instala con Composer. |
+| Commit descriptivo | `feat: refactorizacion MVC e implementacion de modulo con framework`. |
+
+### Capturas de evidencia
+
+1. [Listado del CRUD en MVC nativo](docs/capturas/tp10/01-nativo-listado.png)
+2. [Formulario de alta nativo](docs/capturas/tp10/02-nativo-crear.png)
+3. [Alta confirmada](docs/capturas/tp10/03-nativo-creado.png)
+4. [Formulario de edición nativo](docs/capturas/tp10/04-nativo-editar.png)
+5. [Actualización confirmada](docs/capturas/tp10/05-nativo-actualizado.png)
+6. [Confirmación de eliminación](docs/capturas/tp10/06-nativo-confirmar-eliminar.png)
+7. [Eliminación confirmada](docs/capturas/tp10/07-nativo-eliminado.png)
+8. [Listado del módulo CodeIgniter](docs/capturas/tp10/08-framework-listado.png)
+9. [Detalle de la novedad](docs/capturas/tp10/09-framework-detalle.png)
+10. [Endpoint JSON](docs/capturas/tp10/10-framework-api-json.png)
+11. [Tabla `novedades` en phpMyAdmin](docs/capturas/tp10/11-bd-novedades.png)
+12. [Validación del formulario nativo](docs/capturas/tp10/12-nativo-validacion.png)
+
+### Pruebas y ejecución
+
+El detalle de los casos, los códigos HTTP, la validación, el CSRF y las rutas está en [`docs/tp10-pruebas.md`](docs/tp10-pruebas.md).
+
+1. Iniciar Apache y MySQL desde XAMPP.
+2. Importar la tabla del módulo:
+
+   ```bash
+   mysql -u root --default-character-set=utf8mb4 < sql/novedades_tp10.sql
+   ```
+
+3. Si se clona el repositorio sin `vendor/`, instalar las dependencias del framework:
+
+   ```bash
+   cd tp10/framework
+   composer install
+   ```
+
+4. Abrir `http://localhost/instituto-php/admin/index.php` con la cuenta admin y `http://localhost/instituto-php/tp10/framework/public/novedades` para el módulo.
+5. CodeIgniter requiere las extensiones `intl` y `mbstring`; Composer utiliza `zip`. En el entorno de prueba se habilitaron `intl` y `zip` en `php.ini`.
+6. Si cambia la ruta del proyecto, ajustar `baseURL` en [`tp10/framework/app/Config/App.php`](tp10/framework/app/Config/App.php) y la conexión en [`tp10/framework/app/Config/Database.php`](tp10/framework/app/Config/Database.php).
