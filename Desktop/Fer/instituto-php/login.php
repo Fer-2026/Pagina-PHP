@@ -68,8 +68,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $usuario = $stmt->fetch();
 
             $hash = $usuario['password'] ?? $hashReferencia;
+            $credencialesValidas = password_verify($password, $hash);
 
-            if (!$usuario || !password_verify($password, $hash)) {
+            if (!$usuario || !$credencialesValidas) {
                 $errores[] = 'Correo o contraseña incorrectos.';
             } else {
                 // Mitiga la fijación de sesión: se descarta el ID anterior.

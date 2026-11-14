@@ -26,7 +26,7 @@ admin/                front controller del CRUD de cursos (TP10)
 css/  js/  img/       recursos y buscador asincrónico (TP9)
 *.php                 vistas públicas, registro, login, paneles, cursos y logout
 sql/                  usuarios_tp8.sql, cursos_tp9.sql y novedades_tp10.sql
-docs/                 capturas y pruebas de TP8, TP9 y TP10
+docs/                 capturas y pruebas de TP7, TP8, TP9 y TP10
 tp6/                  normalización, schema.sql y consultas.sql
 tp10/framework/       proyecto CodeIgniter 4 con el módulo Novedades (TP10)
 .env.example          plantilla de variables
@@ -38,12 +38,16 @@ tp10/framework/       proyecto CodeIgniter 4 con el módulo Novedades (TP10)
    - Laragon: `C:\laragon\www\`
 ```bash
 git clone https://github.com/Fer-2026/Pagina-PHP.git
-cd Pagina-PHP
+# El proyecto completo está en Pagina-PHP/Desktop/Fer/instituto-php:
+# copiá esa carpeta a htdocs/instituto-php (o configurá el DocumentRoot).
+cd Pagina-PHP/Desktop/Fer/instituto-php
 cp .env.example .env
 ```
 3. Iniciá **Apache** (XAMPP: botón *Start*; Laragon: *Iniciar todo*).
 4. Abrí http://localhost/instituto-php/
 5. Edit­á `.env` si querés cambiar el nombre, el correo o el entorno.
+
+> **Nota:** si trabajás con la copia de este repositorio que está en `Desktop/Fer/instituto-php`, esa carpeta es la raíz del proyecto. Las rutas de los TP6 a TP10 son relativas a ella.
 
 Alternativa sin XAMPP: `php -S localhost:8000` dentro de la carpeta.
 
@@ -124,6 +128,20 @@ La base de datos del proyecto está en la carpeta [`tp6/`](tp6/):
 - [`consultas.sql`](tp6/consultas.sql): inserciones, `SELECT` con `WHERE`, `ORDER BY` e `INNER JOIN`, `UPDATE` y `DELETE`.
 
 Instrucciones de ejecución y capturas en [`tp6/README.md`](tp6/README.md).
+
+## TP7: CRUD de cursos
+
+El TP7 incorporó la gestión de cursos sobre la tabla `cursos` de `instituto_db`: listado, alta, edición y baja. La implementación se conserva y fue la base del buscador del TP9; en el TP10 se refactorizó a MVC nativo sin cambiar las URL históricas.
+
+- **Front controller:** [`admin/index.php`](admin/index.php), protegido con el rol `admin`.
+- **Compatibilidad:** [`admin/crear.php`](admin/crear.php), [`admin/editar.php`](admin/editar.php) y [`admin/eliminar.php`](admin/eliminar.php) siguen disponibles.
+- **Modelo:** [`app/Models/Curso.php`](app/Models/Curso.php), con PDO y sentencias preparadas.
+- **Controlador:** [`app/Controllers/CursoController.php`](app/Controllers/CursoController.php), con validación y CSRF.
+- **Vistas:** [`app/Views/cursos/`](app/Views/cursos/).
+- **Esquema y datos de ejemplo:** [`sql/cursos_tp9.sql`](sql/cursos_tp9.sql).
+- **Pruebas de regresión:** [`docs/tp7-pruebas.md`](docs/tp7-pruebas.md).
+
+Capturas de referencia: [CRUD en el panel de administración](docs/capturas/tp8/12-cursos-admin.png) y [listado en MVC nativo](docs/capturas/tp10/01-nativo-listado.png).
 
 ## TP8: Manejo de estado, sesiones y autenticación
 

@@ -72,7 +72,8 @@ class Curso
     public function eliminar(int $id): bool
     {
         $stmt = $this->pdo->prepare('DELETE FROM cursos WHERE id = :id');
+        $stmt->execute([':id' => $id]);
 
-        return $stmt->execute([':id' => $id]);
+        return $stmt->rowCount() > 0;
     }
 }

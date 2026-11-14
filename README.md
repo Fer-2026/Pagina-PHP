@@ -2,6 +2,8 @@
 
 Sitio web del instituto (Salta): Educación Secundaria, turno mañana, 1.º a 5.º año, Bachiller en Ciencias Naturales.
 
+> **Ubicación del proyecto completo:** el código actualizado está en [`Desktop/Fer/instituto-php/`](Desktop/Fer/instituto-php/). Las secciones de TP6 a TP10 y las instrucciones de ejecución se refieren a esa carpeta.
+
 ## Descripción y refactorización (Unidad 4)
 El sitio estático del Hito 1 se migró a **PHP**:
 - Las 10 vistas pasaron de `.html` a `.php`.
@@ -31,7 +33,9 @@ css/  js/  img/       recursos
    - Laragon: `C:\laragon\www\`
 ```bash
 git clone https://github.com/Fer-2026/Pagina-PHP.git
-cd Pagina-PHP
+# El proyecto completo está en Pagina-PHP/Desktop/Fer/instituto-php:
+# copiá esa carpeta a htdocs/instituto-php (o configurá el DocumentRoot).
+cd Pagina-PHP/Desktop/Fer/instituto-php
 cp .env.example .env
 ```
 3. Iniciá **Apache** (XAMPP: botón *Start*; Laragon: *Iniciar todo*).
@@ -65,6 +69,17 @@ El TP6 está en la carpeta [`Desktop/Fer/instituto-php/tp6/`](Desktop/Fer/instit
 - Capturas de evidencia: [`tp6/docs/capturas/`](Desktop/Fer/instituto-php/tp6/docs/capturas/).
 
 Instrucciones de ejecución en [`tp6/README.md`](Desktop/Fer/instituto-php/tp6/README.md).
+
+## TP7: CRUD de cursos
+
+El TP7 agregó el CRUD de cursos que luego se conservó como base del TP9 y se refactorizó a MVC en el TP10. La versión actual está en:
+
+- [`admin/index.php`](Desktop/Fer/instituto-php/admin/index.php) como front controller, con las URL históricas `crear.php`, `editar.php` y `eliminar.php` como capas de compatibilidad.
+- [`app/Models/Curso.php`](Desktop/Fer/instituto-php/app/Models/Curso.php), [`app/Controllers/CursoController.php`](Desktop/Fer/instituto-php/app/Controllers/CursoController.php) y [`app/Views/cursos/`](Desktop/Fer/instituto-php/app/Views/cursos/).
+- [`sql/cursos_tp9.sql`](Desktop/Fer/instituto-php/sql/cursos_tp9.sql) con el esquema y los datos de ejemplo.
+- Pruebas de regresión en [`docs/tp7-pruebas.md`](Desktop/Fer/instituto-php/docs/tp7-pruebas.md).
+
+Capturas: [CRUD en el panel](Desktop/Fer/instituto-php/docs/capturas/tp8/12-cursos-admin.png) y [listado MVC](Desktop/Fer/instituto-php/docs/capturas/tp10/01-nativo-listado.png).
 
 ## TP8: Manejo de estado, sesiones y autenticación
 

@@ -195,7 +195,10 @@ class CursoController
         }
 
         try {
-            $this->modelo->eliminar($id);
+            if (!$this->modelo->eliminar($id)) {
+                $this->redirigir('admin/index.php?status=notfound');
+            }
+
             $this->redirigir('admin/index.php?status=deleted');
         } catch (PDOException $e) {
             error_log('Error al eliminar curso: ' . $e->getMessage());

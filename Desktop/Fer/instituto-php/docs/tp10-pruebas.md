@@ -79,7 +79,8 @@ Las URL anteriores `admin/crear.php`, `admin/editar.php` y `admin/eliminar.php` 
 | 10 | Editar un ID inexistente | `302` a `status=notfound`. |
 | 11 | Abrir `admin/index.php` sin sesión | `302` a `login.php?error=acceso_denegado`. |
 | 12 | Abrir las URL antiguas `crear.php`, `editar.php` y `eliminar.php` | `200`; delegan en el controlador. |
-| 13 | Verificación de sintaxis PHP de los 17 archivos del TP10 | 0 errores. |
+| 13 | Intentar eliminar un ID inexistente con CSRF válido | `302` a `status=notfound`; no se informa una baja falsa. |
+| 14 | Verificación de sintaxis PHP de los 17 archivos del TP10 | 0 errores. |
 
 Después de las pruebas se eliminó el curso temporal y la tabla quedó con los 3 registros originales:
 

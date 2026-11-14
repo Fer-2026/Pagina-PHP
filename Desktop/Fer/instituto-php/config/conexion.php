@@ -15,6 +15,8 @@ $options = [
 try {
     $pdo = new PDO($dsn, $user, $pass, $options);
 } catch (PDOException $e) {
-    die("Error crítico de conexión: " . $e->getMessage());
+    error_log('Error de conexión a la base de datos: ' . $e->getMessage());
+    http_response_code(500);
+    exit('No se pudo conectar con la base de datos. Revisá la configuración del servidor.');
 }
 ?>

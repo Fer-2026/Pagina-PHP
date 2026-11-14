@@ -19,7 +19,7 @@ Por línea de comandos (Git Bash, desde la raíz del repositorio):
 /c/xampp/mysql/bin/mysql.exe -u root --default-character-set=utf8mb4 < tp6/schema.sql
 /c/xampp/mysql/bin/mysql.exe -u root --default-character-set=utf8mb4 -t < tp6/consultas.sql
 ```
-`schema.sql` se puede ejecutar varias veces: reinicia las tablas.
+Ajustá `/c/xampp/...` si tu instalación de XAMPP está en otra ruta (por ejemplo, `C:\xampp2`). `schema.sql` se puede ejecutar varias veces: reinicia las tablas.
 
 ## Capturas
 ![Tablas creadas](docs/capturas/01-tablas-creadas.png)

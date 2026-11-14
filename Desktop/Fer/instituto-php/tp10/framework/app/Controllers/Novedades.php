@@ -17,8 +17,9 @@ class Novedades extends BaseController
 
     public function index(): string
     {
-        $modelo   = new NovedadModel();
-        $busqueda = trim((string) $this->request->getGet('q'));
+        $modelo = new NovedadModel();
+        $busquedaParam = $this->request->getGet('q');
+        $busqueda = is_string($busquedaParam) ? trim($busquedaParam) : '';
 
         return view('novedades/index', [
             'title'     => 'Novedades | Instituto 14 de Abril',
