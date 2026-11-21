@@ -55,13 +55,21 @@ Menú generado desde un arreglo PHP, con estado activo, `aria-current` y compone
 
 Las 10 vistas pasaron a PHP y comparten header, nav y footer. El título se genera dinámicamente y la configuración se carga desde `.env`.
 
-![Header reutilizable](Desktop/Fer/instituto-php/docs/capturas/02-header.jpg)
+**1. Servidor local ejecutándose**
 
-![Footer reutilizable](Desktop/Fer/instituto-php/docs/capturas/04-footer.jpg)
+![Sitio corriendo en localhost/instituto-php](Desktop/Fer/instituto-php/docs/capturas/tp4/01-servidor-local.jpg)
 
-![Título dinámico en la pestaña](Desktop/Fer/instituto-php/docs/capturas/05-titulo-dinamico.jpg)
+**2. Estructura modular (SSI)**
 
-![Archivo .env.example en el repositorio](Desktop/Fer/instituto-php/docs/capturas/07-env-example.jpg)
+![Código fuente de header.php, nav.php y footer.php](Desktop/Fer/instituto-php/docs/capturas/tp4/02-estructura-ssi.png)
+
+**3. Navegación dinámica**
+
+![Título dinámico en la pestaña y clase active en el menú](Desktop/Fer/instituto-php/docs/capturas/tp4/03-navegacion-dinamica.png)
+
+**4. Variables de entorno**
+
+![Archivo .env.example versionado en el repositorio](Desktop/Fer/instituto-php/docs/capturas/tp4/04-variables-entorno.png)
 
 ## TP5 / Clase 5: formularios y seguridad web
 
