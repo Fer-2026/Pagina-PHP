@@ -1,120 +1,157 @@
 # Instituto Cooperativo 14 de Abril N.º 8001: sitio web
 
-Sitio web del instituto (Salta): Educación Secundaria, turno mañana, 1.º a 5.º año, Bachiller en Ciencias Naturales.
+Sitio web institucional (Salta): Educación Secundaria, turno mañana, 1.º a 5.º año, Bachiller en Ciencias Naturales.
 
-> **Ubicación del proyecto completo:** el código actualizado está en [`Desktop/Fer/instituto-php/`](Desktop/Fer/instituto-php/). Las secciones de TP6 a TP10 y las instrucciones de ejecución se refieren a esa carpeta.
+> **Proyecto completo:** la versión actualizada está en [`Desktop/Fer/instituto-php/`](Desktop/Fer/instituto-php/). La documentación detallada, las instrucciones de instalación y **todas las capturas** están en el [README del proyecto](Desktop/Fer/instituto-php/README.md).
+>
+> **Para la corrección:** abrir esa carpeta como raíz del proyecto y usar el README completo. La copia de la raíz es la versión inicial del sitio.
 
-## Descripción y refactorización (Unidad 4)
-El sitio estático del Hito 1 se migró a **PHP**:
-- Las 10 vistas pasaron de `.html` a `.php`.
-- Se aplicó **Server Side Includes**: `header.php`, `nav.php` y `footer.php` en `includes/` eliminan el código repetido.
-- **SSR básico:** el `<title>` cambia según `$titulo_pagina` y el menú marca la página activa (`active` y `aria-current`).
-- **Variables de entorno:** `.env` (ignorado por Git) con `.env.example` como plantilla, leído por `config/env.php`.
+## Documentación y accesos rápidos
 
-## Prototipo de Figma
-- Figma: https://github.com/Fer-2026/Dise-o-UI-UX-Mockup-Figma-
-- Mockups exportados: https://www.figma.com/make/UL3GSEQOHBF6XCXKV9COQ8/High-Fidelity-Mockups-for-School?t=qmuPPG4mTDi6oJpE-1
+- [README completo del proyecto](Desktop/Fer/instituto-php/README.md)
+- [Carpeta general de capturas](Desktop/Fer/instituto-php/docs/capturas/)
+- [Capturas de la Clase 5 / TP5](Desktop/Fer/instituto-php/clase5/docs/capturas/)
+- [Capturas del TP6](Desktop/Fer/instituto-php/tp6/docs/capturas/)
+- [Capturas del TP8](Desktop/Fer/instituto-php/docs/capturas/tp8/)
+- [Capturas del TP9](Desktop/Fer/instituto-php/docs/capturas/tp9/)
+- [Capturas del TP10](Desktop/Fer/instituto-php/docs/capturas/tp10/)
+- [Pruebas del TP7](Desktop/Fer/instituto-php/docs/tp7-pruebas.md)
+- [Pruebas del TP8](Desktop/Fer/instituto-php/docs/tp8-pruebas.md)
+- [Pruebas del TP9](Desktop/Fer/instituto-php/docs/tp9-pruebas.md)
+- [Pruebas del TP10](Desktop/Fer/instituto-php/docs/tp10-pruebas.md)
 
-## Tecnologías
-HTML5, CSS3, Bootstrap 5.3, JavaScript, PHP 8.x, XAMPP / Laragon, Git y GitHub, Prettier.
+**Cuentas de prueba**
 
-## Estructura
-```
-config/env.php        carga de variables de entorno
-includes/             header.php, nav.php, footer.php
-css/  js/  img/       recursos
-*.php                 10 vistas
-.env.example          plantilla de variables
-```
-## Instalación y ejecución local
-1. Instalá **XAMPP** (o **Laragon**) con PHP 8.x.
-2. Cloná el repositorio dentro de la carpeta del servidor:
-   - XAMPP: `C:\xampp\htdocs\`
-   - Laragon: `C:\laragon\www\`
-```bash
-git clone https://github.com/Fer-2026/Pagina-PHP.git
-# El proyecto completo está en Pagina-PHP/Desktop/Fer/instituto-php:
-# copiá esa carpeta a htdocs/instituto-php (o configurá el DocumentRoot).
-cd Pagina-PHP/Desktop/Fer/instituto-php
-cp .env.example .env
-```
-3. Iniciá **Apache** (XAMPP: botón *Start*; Laragon: *Iniciar todo*).
-4. Abrí http://localhost/instituto-php/
-5. Edit­á `.env` si querés cambiar el nombre, el correo o el entorno.
+| Rol | Correo | Contraseña |
+|---|---|---|
+| admin | `admin@instituto.edu.ar` | `Admin123!` |
+| usuario | `usuario@instituto.edu.ar` | `Usuario123!` |
 
-Alternativa sin XAMPP: `php -S localhost:8000` dentro de la carpeta.
+## TP1: sitio estático y maquetación
 
-## Evidencia de funcionamiento
-![Servidor local ejecutándose (localhost)](docs/capturas/01-localhost.jpg)
-![Estructura modular: header.php](docs/capturas/02-header.jpg)
-![Estructura modular: nav.php](docs/capturas/03-nav.jpg)
-![Estructura modular: footer.php](docs/capturas/04-footer.jpg)
-![Título dinámico en la pestaña](docs/capturas/05-titulo-dinamico.jpg)
-![Ítem activo en el menú](docs/capturas/06-item-activo.jpg)
-![Archivo .env.example en el repositorio](docs/capturas/07-env-example.jpg)
+Sitio construido con HTML5, CSS3 y Bootstrap 5.3, con 10 vistas y estructura común de header, navegación y footer.
 
-## Flujo de Git
-Ramas `feature/maquetacion` y `feature/migracion-php-ssi`, integradas a `main` con Pull Request.
+![Sitio base ejecutándose en localhost](Desktop/Fer/instituto-php/docs/capturas/01-localhost.jpg)
 
-## Fuentes
-Datos del instituto: sitios públicos y su perfil de Instagram. Los nombres del equipo docente son ficticios (maqueta). Agenda: PDF institucional 2026.
+## TP2: prototipo de Figma y diseño responsive
 
-## TP6: Diseño y creación del esquema relacional en MySQL
+Prototipo visual y definición de la identidad del sitio antes de llevarlo a código.
 
-El TP6 está en la carpeta [`Desktop/Fer/instituto-php/tp6/`](Desktop/Fer/instituto-php/tp6/):
+![Inicio del prototipo en Figma](Desktop/Fer/instituto-php/docs/capturas/tp2/01-figma-inicio.jpg)
 
-- [`NORMALIZACION.md`](Desktop/Fer/instituto-php/tp6/NORMALIZACION.md): normalización paso a paso (1FN, 2FN, 3FN), tablas con claves y diagrama entidad-relación.
-- [`schema.sql`](Desktop/Fer/instituto-php/tp6/schema.sql): creación de la base `instituto_14_abril` con 9 tablas, claves primarias y foráneas, campos de auditoría e índices.
-- [`consultas.sql`](Desktop/Fer/instituto-php/tp6/consultas.sql): inserciones, `SELECT` con `WHERE`, `ORDER BY` e `INNER JOIN`, `UPDATE` y `DELETE`.
-- Capturas de evidencia: [`tp6/docs/capturas/`](Desktop/Fer/instituto-php/tp6/docs/capturas/).
+![Oferta académica en Figma](Desktop/Fer/instituto-php/docs/capturas/tp2/02-figma-oferta-academica.jpg)
 
-Instrucciones de ejecución en [`tp6/README.md`](Desktop/Fer/instituto-php/tp6/README.md).
+![Contacto en Figma](Desktop/Fer/instituto-php/docs/capturas/tp2/03-figma-contacto.jpg)
+
+## TP3: navegación dinámica y componentes reutilizables
+
+Menú generado desde un arreglo PHP, con estado activo, `aria-current` y componentes reutilizables en `includes/`.
+
+![Menú de navegación del sitio](Desktop/Fer/instituto-php/docs/capturas/03-nav.jpg)
+
+![Ítem activo y título dinámico](Desktop/Fer/instituto-php/docs/capturas/06-item-activo.jpg)
+
+## TP4: migración a PHP, SSI y variables de entorno
+
+Las 10 vistas pasaron a PHP y comparten header, nav y footer. El título se genera dinámicamente y la configuración se carga desde `.env`.
+
+![Header reutilizable](Desktop/Fer/instituto-php/docs/capturas/02-header.jpg)
+
+![Footer reutilizable](Desktop/Fer/instituto-php/docs/capturas/04-footer.jpg)
+
+![Título dinámico en la pestaña](Desktop/Fer/instituto-php/docs/capturas/05-titulo-dinamico.jpg)
+
+![Archivo .env.example en el repositorio](Desktop/Fer/instituto-php/docs/capturas/07-env-example.jpg)
+
+## TP5 / Clase 5: formularios y seguridad web
+
+Formulario POST de contacto y buscador GET con sanitización, validación en servidor, escape XSS, token CSRF y patrón Post/Redirect/Get.
+
+![Validación del formulario de contacto](Desktop/Fer/instituto-php/clase5/docs/capturas/01-contacto-errores.png)
+
+![Envío exitoso del formulario](Desktop/Fer/instituto-php/clase5/docs/capturas/03-envio-exitoso.png)
+
+![Intento de XSS mostrado como texto](Desktop/Fer/instituto-php/clase5/docs/capturas/04-xss-escapado.png)
+
+![Búsqueda con resultados](Desktop/Fer/instituto-php/clase5/docs/capturas/05-busqueda-resultados.png)
+
+[Ver las 8 capturas de TP5](Desktop/Fer/instituto-php/clase5/docs/capturas/)
+
+## TP6: diseño y creación del esquema relacional en MySQL
+
+Base `instituto_14_abril` normalizada a 1FN, 2FN y 3FN, con 9 tablas, claves foráneas, índices y consultas CRUD.
+
+![Tablas creadas en phpMyAdmin](Desktop/Fer/instituto-php/tp6/docs/capturas/01-tablas-creadas.png)
+
+![Modelo relacional en el diseñador](Desktop/Fer/instituto-php/tp6/docs/capturas/02-disenador.png)
+
+![SELECT con WHERE y ORDER BY](Desktop/Fer/instituto-php/tp6/docs/capturas/03-select-where.png)
+
+![INNER JOIN entre tablas](Desktop/Fer/instituto-php/tp6/docs/capturas/04-inner-join.png)
+
+[Ver las 6 capturas de TP6](Desktop/Fer/instituto-php/tp6/docs/capturas/)
 
 ## TP7: CRUD de cursos
 
-El TP7 agregó el CRUD de cursos que luego se conservó como base del TP9 y se refactorizó a MVC en el TP10. La versión actual está en:
+Listado, alta, edición y baja de cursos sobre la tabla `cursos` de `instituto_db`, con PDO, validación y CSRF.
 
-- [`admin/index.php`](Desktop/Fer/instituto-php/admin/index.php) como front controller, con las URL históricas `crear.php`, `editar.php` y `eliminar.php` como capas de compatibilidad.
-- [`app/Models/Curso.php`](Desktop/Fer/instituto-php/app/Models/Curso.php), [`app/Controllers/CursoController.php`](Desktop/Fer/instituto-php/app/Controllers/CursoController.php) y [`app/Views/cursos/`](Desktop/Fer/instituto-php/app/Views/cursos/).
-- [`sql/cursos_tp9.sql`](Desktop/Fer/instituto-php/sql/cursos_tp9.sql) con el esquema y los datos de ejemplo.
-- Pruebas de regresión en [`docs/tp7-pruebas.md`](Desktop/Fer/instituto-php/docs/tp7-pruebas.md).
+![Listado de cursos en el panel de administración](Desktop/Fer/instituto-php/docs/capturas/tp7/01-crud-listado.png)
 
-Capturas: [CRUD en el panel](Desktop/Fer/instituto-php/docs/capturas/tp8/12-cursos-admin.png) y [listado MVC](Desktop/Fer/instituto-php/docs/capturas/tp10/01-nativo-listado.png).
+![Formulario de alta de un curso](Desktop/Fer/instituto-php/docs/capturas/tp7/02-crud-alta.png)
 
-## TP8: Manejo de estado, sesiones y autenticación
+![Formulario de edición de un curso](Desktop/Fer/instituto-php/docs/capturas/tp7/03-crud-edicion.png)
 
-La implementación completa del TP8 está integrada en [`Desktop/Fer/instituto-php/`](Desktop/Fer/instituto-php/). Incluye:
+## TP8: manejo de estado, sesiones y autenticación
 
-- `registro.php`, `login.php`, `logout.php`, `dashboard.php` y `admin_panel.php`.
-- `auth_guard.php` para exigir sesión y restringir el rol `admin`.
-- `sql/usuarios_tp8.sql` con la tabla `usuarios` y las cuentas semilla.
-- Capturas de evidencia en [`Desktop/Fer/instituto-php/docs/capturas/tp8/`](Desktop/Fer/instituto-php/docs/capturas/tp8/).
-- Detalle de las pruebas en [`Desktop/Fer/instituto-php/docs/tp8-pruebas.md`](Desktop/Fer/instituto-php/docs/tp8-pruebas.md).
-- Documentación completa en [`Desktop/Fer/instituto-php/README.md`](Desktop/Fer/instituto-php/README.md).
+Registro, login, logout, sesión segura y control de acceso por roles.
 
-Cuentas de prueba: `admin@instituto.edu.ar` / `Admin123!` y `usuario@instituto.edu.ar` / `Usuario123!`.
+![Login del sistema](Desktop/Fer/instituto-php/docs/capturas/tp8/05-login-formulario.png)
 
-## TP9: Comunicación asincrónica y APIs (AJAX & JSON)
+![Dashboard del usuario](Desktop/Fer/instituto-php/docs/capturas/tp8/07-dashboard-usuario.png)
 
-La implementación completa del TP9 está integrada en [`Desktop/Fer/instituto-php/`](Desktop/Fer/instituto-php/). Incluye:
+![Acceso denegado por rol](Desktop/Fer/instituto-php/docs/capturas/tp8/08-rol-denegado.png)
 
-- `cursos.php` y `js/cursos.js`: buscador público con Fetch API, debounce, estados de carga y manejo de errores.
-- `api/cursos.php`: endpoint independiente con PDO, consultas preparadas, `json_encode()` y códigos HTTP `200`, `400`, `404`, `405` y `500`.
-- `sql/cursos_tp9.sql`: esquema y datos de ejemplo de la tabla `cursos`.
-- Integración en la navegación y en `propuesta-educativa.php`.
-- Capturas de evidencia en [`Desktop/Fer/instituto-php/docs/capturas/tp9/`](Desktop/Fer/instituto-php/docs/capturas/tp9/).
-- Detalle de las pruebas en [`Desktop/Fer/instituto-php/docs/tp9-pruebas.md`](Desktop/Fer/instituto-php/docs/tp9-pruebas.md).
-- Documentación completa en [`Desktop/Fer/instituto-php/README.md`](Desktop/Fer/instituto-php/README.md).
+![Panel de administración](Desktop/Fer/instituto-php/docs/capturas/tp8/11-panel-admin.png)
 
-## TP10: Patrón MVC e introducción a frameworks
+[Ver las 15 capturas de TP8](Desktop/Fer/instituto-php/docs/capturas/tp8/)
 
-La implementación completa del TP10 está integrada en [`Desktop/Fer/instituto-php/`](Desktop/Fer/instituto-php/). Incluye:
+## TP9: comunicación asincrónica y API JSON
 
-- **Parte A:** CRUD de cursos refactorizado a MVC nativo en `app/Models/Curso.php`, `app/Controllers/CursoController.php` y `app/Views/cursos/`. `admin/index.php` quedó como front controller y las URL anteriores se conservan mediante capas de compatibilidad.
-- **Parte B:** proyecto **CodeIgniter 4.7.6** en `tp10/framework/` con el módulo independiente **Novedades**, ruta, controlador, modelo con Query Builder, vistas con layout y endpoint JSON.
-- Tabla `novedades` y datos de ejemplo en `sql/novedades_tp10.sql`.
-- Capturas de evidencia en [`Desktop/Fer/instituto-php/docs/capturas/tp10/`](Desktop/Fer/instituto-php/docs/capturas/tp10/).
-- Detalle de pruebas en [`Desktop/Fer/instituto-php/docs/tp10-pruebas.md`](Desktop/Fer/instituto-php/docs/tp10-pruebas.md).
-- Documentación completa en [`Desktop/Fer/instituto-php/README.md`](Desktop/Fer/instituto-php/README.md).
+Buscador con Fetch API, debounce, actualización parcial del DOM y endpoint JSON con códigos HTTP.
 
-Commit descriptivo del TP10: `feat: refactorizacion MVC e implementacion de modulo con framework`.
+![Página inicial del buscador de cursos](Desktop/Fer/instituto-php/docs/capturas/tp9/01-cursos-inicial.png)
+
+![Búsqueda web sin recargar](Desktop/Fer/instituto-php/docs/capturas/tp9/02-busqueda-web.png)
+
+![Respuesta JSON 200](Desktop/Fer/instituto-php/docs/capturas/tp9/05-api-json-200.png)
+
+![Respuesta JSON 404](Desktop/Fer/instituto-php/docs/capturas/tp9/06-api-json-404.png)
+
+[Ver las 8 capturas de TP9](Desktop/Fer/instituto-php/docs/capturas/tp9/)
+
+## TP10: patrón MVC e introducción a frameworks
+
+Parte A: CRUD de cursos refactorizado a MVC nativo. Parte B: módulo independiente de Novedades con CodeIgniter 4.
+
+![Listado del CRUD en MVC nativo](Desktop/Fer/instituto-php/docs/capturas/tp10/01-nativo-listado.png)
+
+![Validación del formulario nativo](Desktop/Fer/instituto-php/docs/capturas/tp10/12-nativo-validacion.png)
+
+![Listado del módulo CodeIgniter](Desktop/Fer/instituto-php/docs/capturas/tp10/08-framework-listado.png)
+
+![Detalle de la novedad](Desktop/Fer/instituto-php/docs/capturas/tp10/09-framework-detalle.png)
+
+![Endpoint JSON del módulo Novedades](Desktop/Fer/instituto-php/docs/capturas/tp10/10-framework-api-json.png)
+
+![Tabla novedades en phpMyAdmin](Desktop/Fer/instituto-php/docs/capturas/tp10/11-bd-novedades.png)
+
+[Ver las 12 capturas de TP10](Desktop/Fer/instituto-php/docs/capturas/tp10/)
+
+## Ejecución rápida
+
+1. Iniciar **Apache** y **MySQL** desde XAMPP.
+2. Copiar `Desktop/Fer/instituto-php/` a `htdocs/instituto-php/` o configurar el `DocumentRoot` apuntando a esa carpeta.
+3. Abrir `http://localhost/instituto-php/`.
+4. Para el módulo CodeIgniter, ejecutar `composer install` dentro de `tp10/framework/` si falta `vendor/`.
+
+La explicación completa de cada TP, los requisitos y las pruebas están en el [README del proyecto](Desktop/Fer/instituto-php/README.md).
