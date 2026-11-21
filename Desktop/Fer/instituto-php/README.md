@@ -2,16 +2,65 @@
 
 Sitio web del instituto (Salta): Educación Secundaria, turno mañana, 1.º a 5.º año, Bachiller en Ciencias Naturales.
 
-## Descripción y refactorización (Unidad 4)
+## TP1: sitio estático y maquetación
+
+Primera etapa del proyecto: el sitio institucional se construyó con **HTML5, CSS3 y Bootstrap 5.3**. Tiene 10 vistas (inicio, institucional, docentes, propuesta educativa, plan de estudios, ciencias naturales, agenda, galería, inscripción y contacto) y una estructura común de header, navegación y footer.
+
+- Diseño responsive para escritorio, tablet y celular.
+- Buenas bases de accesibilidad: `lang="es"`, un solo `h1` por página, enlace «Saltar al contenido», `alt` en imágenes y foco visible.
+- Componentes visuales reutilizables: hero, tarjetas, botones, badges y secciones.
+
+**Captura de evidencia**
+
+![Sitio base ejecutándose en localhost](docs/capturas/01-localhost.jpg)
+
+## TP2: prototipo de Figma y diseño responsive
+
+Antes de llevar el sitio a código se armó el prototipo visual y la identidad del proyecto en **Figma**. El diseño definió la jerarquía de secciones, la navegación, los colores y las tarjetas que después se implementaron con Bootstrap y CSS propio.
+
+- Prototipo: https://github.com/Fer-2026/Dise-o-UI-UX-Mockup-Figma-
+- Mockups exportados: https://www.figma.com/make/UL3GSEQOHBF6XCXKV9COQ8/High-Fidelity-Mockups-for-School?t=qmuPPG4mTDi6oJpE-1
+
+**Capturas del prototipo**
+
+![Inicio del prototipo en Figma](docs/capturas/tp2/01-figma-inicio.jpg)
+
+![Oferta académica en Figma](docs/capturas/tp2/02-figma-oferta-academica.jpg)
+
+![Contacto en Figma](docs/capturas/tp2/03-figma-contacto.jpg)
+
+## TP3: navegación dinámica y componentes reutilizables
+
+El menú principal se genera desde un arreglo PHP con secciones e hijos. El código detecta la ruta actual, marca el ítem activo con `active` y `aria-current`, y reutiliza el mismo header, nav y footer en todas las vistas.
+
+- Menú con submenús: Institucional, Académico, Agenda, Galería, Inscripción y Contacto.
+- Estado activo automático según la página.
+- Componentes separados en `includes/`.
+
+**Capturas de evidencia**
+
+![Menú de navegación del sitio](docs/capturas/03-nav.jpg)
+
+![Ítem activo y título dinámico](docs/capturas/06-item-activo.jpg)
+
+## TP4: migración a PHP, SSI y variables de entorno
+
 El sitio estático del Hito 1 se migró a **PHP**:
+
 - Las 10 vistas pasaron de `.html` a `.php`.
 - Se aplicó **Server Side Includes**: `header.php`, `nav.php` y `footer.php` en `includes/` eliminan el código repetido.
 - **SSR básico:** el `<title>` cambia según `$titulo_pagina` y el menú marca la página activa (`active` y `aria-current`).
 - **Variables de entorno:** `.env` (ignorado por Git) con `.env.example` como plantilla, leído por `config/env.php`.
 
-## Prototipo de Figma
-- Figma: https://github.com/Fer-2026/Dise-o-UI-UX-Mockup-Figma-
-- Mockups exportados: https://www.figma.com/make/UL3GSEQOHBF6XCXKV9COQ8/High-Fidelity-Mockups-for-School?t=qmuPPG4mTDi6oJpE-1
+**Capturas de evidencia**
+
+![Header reutilizable](docs/capturas/02-header.jpg)
+
+![Footer reutilizable](docs/capturas/04-footer.jpg)
+
+![Título dinámico en la pestaña](docs/capturas/05-titulo-dinamico.jpg)
+
+![Archivo .env.example en el repositorio](docs/capturas/07-env-example.jpg)
 
 ## Tecnologías
 HTML5, CSS3, Bootstrap 5.3, JavaScript, PHP 8.x, XAMPP / Laragon, Git y GitHub, Prettier.
@@ -26,7 +75,7 @@ admin/                front controller del CRUD de cursos (TP10)
 css/  js/  img/       recursos y buscador asincrónico (TP9)
 *.php                 vistas públicas, registro, login, paneles, cursos y logout
 sql/                  usuarios_tp8.sql, cursos_tp9.sql y novedades_tp10.sql
-docs/                 capturas y pruebas de TP7, TP8, TP9 y TP10
+docs/                 capturas y pruebas de TP1 a TP10
 tp6/                  normalización, schema.sql y consultas.sql
 tp10/framework/       proyecto CodeIgniter 4 con el módulo Novedades (TP10)
 .env.example          plantilla de variables
@@ -37,28 +86,19 @@ tp10/framework/       proyecto CodeIgniter 4 con el módulo Novedades (TP10)
    - XAMPP: `C:\xampp\htdocs\`
    - Laragon: `C:\laragon\www\`
 ```bash
-git clone https://github.com/Fer-2026/Pagina-PHP.git
-# El proyecto completo está en Pagina-PHP/Desktop/Fer/instituto-php:
-# copiá esa carpeta a htdocs/instituto-php (o configurá el DocumentRoot).
-cd Pagina-PHP/Desktop/Fer/instituto-php
+git clone https://github.com/Fer-2026/Pagina-PHP.git instituto-php
+cd instituto-php
 cp .env.example .env
 ```
 3. Iniciá **Apache** (XAMPP: botón *Start*; Laragon: *Iniciar todo*).
 4. Abrí http://localhost/instituto-php/
 5. Edit­á `.env` si querés cambiar el nombre, el correo o el entorno.
 
-> **Nota:** si trabajás con la copia de este repositorio que está en `Desktop/Fer/instituto-php`, esa carpeta es la raíz del proyecto. Las rutas de los TP6 a TP10 son relativas a ella.
+> **Nota:** la raíz del repositorio es la raíz del proyecto. Las rutas de TP6 a TP10 son relativas a esa carpeta.
 
 Alternativa sin XAMPP: `php -S localhost:8000` dentro de la carpeta.
 
-## Evidencia de funcionamiento
-![Servidor local ejecutándose (localhost)](docs/capturas/01-localhost.jpg)
-![Estructura modular: header.php](docs/capturas/02-header.jpg)
-![Estructura modular: nav.php](docs/capturas/03-nav.jpg)
-![Estructura modular: footer.php](docs/capturas/04-footer.jpg)
-![Título dinámico en la pestaña](docs/capturas/05-titulo-dinamico.jpg)
-![Ítem activo en el menú](docs/capturas/06-item-activo.jpg)
-![Archivo .env.example en el repositorio](docs/capturas/07-env-example.jpg)
+> Las capturas de TP1 a TP4 están integradas en cada sección anterior. La carpeta completa de evidencias es [`docs/capturas/`](docs/capturas/).
 
 ## Flujo de Git
 Ramas `feature/maquetacion` y `feature/migracion-php-ssi`, integradas a `main` con Pull Request.
@@ -69,7 +109,7 @@ Datos del instituto: sitios públicos y su perfil de Instagram. Los nombres del 
 
 
 
-## Clase 5: Procesamiento de formularios y seguridad web
+## TP5 / Clase 5: Procesamiento de formularios y seguridad web
 
 Todo el desarrollo de esta entrega está en la carpeta [`clase5/`](clase5/). Es una copia del sitio modular en PHP (SSI) con dos formularios nuevos que se procesan en el servidor.
 
@@ -127,7 +167,21 @@ La base de datos del proyecto está en la carpeta [`tp6/`](tp6/):
 - [`schema.sql`](tp6/schema.sql): creación de la base `instituto_14_abril` con 9 tablas (roles, usuarios, tipos de evento, años, eventos, relación evento-año, asuntos, estados y consultas), claves primarias y foráneas, campos de auditoría e índices.
 - [`consultas.sql`](tp6/consultas.sql): inserciones, `SELECT` con `WHERE`, `ORDER BY` e `INNER JOIN`, `UPDATE` y `DELETE`.
 
-Instrucciones de ejecución y capturas en [`tp6/README.md`](tp6/README.md).
+Instrucciones de ejecución en [`tp6/README.md`](tp6/README.md).
+
+### Capturas de evidencia
+
+![Tablas creadas en phpMyAdmin](tp6/docs/capturas/01-tablas-creadas.png)
+
+![Modelo relacional en el diseñador](tp6/docs/capturas/02-disenador.png)
+
+![SELECT con WHERE y ORDER BY](tp6/docs/capturas/03-select-where.png)
+
+![INNER JOIN entre tablas](tp6/docs/capturas/04-inner-join.png)
+
+![UPDATE de un registro](tp6/docs/capturas/05-update.png)
+
+![DELETE de un registro](tp6/docs/capturas/06-delete.png)
 
 ## TP7: CRUD de cursos
 
@@ -141,7 +195,15 @@ El TP7 incorporó la gestión de cursos sobre la tabla `cursos` de `instituto_db
 - **Esquema y datos de ejemplo:** [`sql/cursos_tp9.sql`](sql/cursos_tp9.sql).
 - **Pruebas de regresión:** [`docs/tp7-pruebas.md`](docs/tp7-pruebas.md).
 
-Capturas de referencia: [CRUD en el panel de administración](docs/capturas/tp8/12-cursos-admin.png) y [listado en MVC nativo](docs/capturas/tp10/01-nativo-listado.png).
+### Capturas de evidencia
+
+Las capturas muestran el CRUD de cursos; la funcionalidad se conserva y luego se refactoriza en TP10.
+
+![Listado de cursos en el panel de administración](docs/capturas/tp7/01-crud-listado.png)
+
+![Formulario de alta de un curso](docs/capturas/tp7/02-crud-alta.png)
+
+![Formulario de edición de un curso](docs/capturas/tp7/03-crud-edicion.png)
 
 ## TP8: Manejo de estado, sesiones y autenticación
 
@@ -349,14 +411,37 @@ Ejemplo de respuesta:
 
 ### Capturas de evidencia
 
-1. Página inicial con los tres cursos: [01-cursos-inicial.png](docs/capturas/tp9/01-cursos-inicial.png)
-2. Búsqueda “web” sin recargar: [02-busqueda-web.png](docs/capturas/tp9/02-busqueda-web.png)
-3. Búsqueda sin coincidencias: [03-busqueda-sin-resultados.png](docs/capturas/tp9/03-busqueda-sin-resultados.png)
-4. Error de red simulado: [04-error-de-red-simulado.png](docs/capturas/tp9/04-error-de-red-simulado.png)
-5. JSON `200`: [05-api-json-200.png](docs/capturas/tp9/05-api-json-200.png)
-6. JSON `404`: [06-api-json-404.png](docs/capturas/tp9/06-api-json-404.png)
-7. JSON `400`: [07-api-json-400.png](docs/capturas/tp9/07-api-json-400.png)
-8. Tabla `cursos` en phpMyAdmin: [08-phpmyadmin-cursos.png](docs/capturas/tp9/08-phpmyadmin-cursos.png)
+**1. Página inicial con los tres cursos**
+
+![Página inicial del buscador de cursos](docs/capturas/tp9/01-cursos-inicial.png)
+
+**2. Búsqueda “web” sin recargar**
+
+![Búsqueda web sin recargar](docs/capturas/tp9/02-busqueda-web.png)
+
+**3. Búsqueda sin coincidencias**
+
+![Búsqueda sin resultados](docs/capturas/tp9/03-busqueda-sin-resultados.png)
+
+**4. Error de red simulado**
+
+![Error de red simulado](docs/capturas/tp9/04-error-de-red-simulado.png)
+
+**5. JSON `200`**
+
+![Respuesta JSON 200](docs/capturas/tp9/05-api-json-200.png)
+
+**6. JSON `404`**
+
+![Respuesta JSON 404](docs/capturas/tp9/06-api-json-404.png)
+
+**7. JSON `400`**
+
+![Respuesta JSON 400](docs/capturas/tp9/07-api-json-400.png)
+
+**8. Tabla `cursos` en phpMyAdmin**
+
+![Tabla cursos en phpMyAdmin](docs/capturas/tp9/08-phpmyadmin-cursos.png)
 
 ### Pruebas y resultados
 
@@ -432,18 +517,57 @@ El listado incluye búsqueda por título, resumen o contenido; el detalle usa un
 
 ### Capturas de evidencia
 
-1. [Listado del CRUD en MVC nativo](docs/capturas/tp10/01-nativo-listado.png)
-2. [Formulario de alta nativo](docs/capturas/tp10/02-nativo-crear.png)
-3. [Alta confirmada](docs/capturas/tp10/03-nativo-creado.png)
-4. [Formulario de edición nativo](docs/capturas/tp10/04-nativo-editar.png)
-5. [Actualización confirmada](docs/capturas/tp10/05-nativo-actualizado.png)
-6. [Confirmación de eliminación](docs/capturas/tp10/06-nativo-confirmar-eliminar.png)
-7. [Eliminación confirmada](docs/capturas/tp10/07-nativo-eliminado.png)
-8. [Listado del módulo CodeIgniter](docs/capturas/tp10/08-framework-listado.png)
-9. [Detalle de la novedad](docs/capturas/tp10/09-framework-detalle.png)
-10. [Endpoint JSON](docs/capturas/tp10/10-framework-api-json.png)
-11. [Tabla `novedades` en phpMyAdmin](docs/capturas/tp10/11-bd-novedades.png)
-12. [Validación del formulario nativo](docs/capturas/tp10/12-nativo-validacion.png)
+#### Parte A: CRUD en MVC nativo
+
+**1. Listado del CRUD en MVC nativo**
+
+![Listado del CRUD en MVC nativo](docs/capturas/tp10/01-nativo-listado.png)
+
+**2. Formulario de alta nativo**
+
+![Formulario de alta nativo](docs/capturas/tp10/02-nativo-crear.png)
+
+**3. Alta confirmada**
+
+![Alta confirmada](docs/capturas/tp10/03-nativo-creado.png)
+
+**4. Formulario de edición nativo**
+
+![Formulario de edición nativo](docs/capturas/tp10/04-nativo-editar.png)
+
+**5. Actualización confirmada**
+
+![Actualización confirmada](docs/capturas/tp10/05-nativo-actualizado.png)
+
+**6. Confirmación de eliminación**
+
+![Confirmación de eliminación](docs/capturas/tp10/06-nativo-confirmar-eliminar.png)
+
+**7. Eliminación confirmada**
+
+![Eliminación confirmada](docs/capturas/tp10/07-nativo-eliminado.png)
+
+**8. Validación del formulario nativo**
+
+![Validación del formulario nativo](docs/capturas/tp10/12-nativo-validacion.png)
+
+#### Parte B: módulo Novedades con CodeIgniter
+
+**9. Listado del módulo CodeIgniter**
+
+![Listado del módulo CodeIgniter](docs/capturas/tp10/08-framework-listado.png)
+
+**10. Detalle de la novedad**
+
+![Detalle de la novedad](docs/capturas/tp10/09-framework-detalle.png)
+
+**11. Endpoint JSON**
+
+![Endpoint JSON del módulo Novedades](docs/capturas/tp10/10-framework-api-json.png)
+
+**12. Tabla `novedades` en phpMyAdmin**
+
+![Tabla novedades en phpMyAdmin](docs/capturas/tp10/11-bd-novedades.png)
 
 ### Pruebas y ejecución
 
