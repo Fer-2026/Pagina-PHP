@@ -82,19 +82,20 @@ tp10/framework/       proyecto CodeIgniter 4 con el módulo Novedades (TP10)
 ```
 ## Instalación y ejecución local
 1. Instalá **XAMPP** (o **Laragon**) con PHP 8.x.
-2. Cloná el repositorio dentro de la carpeta del servidor:
-   - XAMPP: `C:\xampp\htdocs\`
-   - Laragon: `C:\laragon\www\`
+2. Ubicá **esta carpeta** (`Desktop/Fer/instituto-php`) dentro del servidor:
+   - XAMPP: copiala a `C:\xampp\htdocs\instituto-php`
+   - Laragon: copiala a `C:\laragon\www\instituto-php`
 ```bash
-git clone https://github.com/Fer-2026/Pagina-PHP.git instituto-php
-cd instituto-php
+git clone https://github.com/Fer-2026/Pagina-PHP.git
+# Luego copiá Pagina-PHP/Desktop/Fer/instituto-php a htdocs/instituto-php
+cd /c/xampp/htdocs/instituto-php
 cp .env.example .env
 ```
 3. Iniciá **Apache** (XAMPP: botón *Start*; Laragon: *Iniciar todo*).
 4. Abrí http://localhost/instituto-php/
 5. Edit­á `.env` si querés cambiar el nombre, el correo o el entorno.
 
-> **Nota:** la raíz del repositorio es la raíz del proyecto. Las rutas de TP6 a TP10 son relativas a esa carpeta.
+> **Nota:** la raíz de este proyecto es la carpeta `Desktop/Fer/instituto-php`. El repositorio conserva una copia inicial en su raíz; para ejecutar la versión completa usá esta carpeta. Las rutas de TP6 a TP10 son relativas a ella.
 
 Alternativa sin XAMPP: `php -S localhost:8000` dentro de la carpeta.
 
