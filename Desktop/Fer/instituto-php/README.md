@@ -56,11 +56,15 @@ El sitio estático del Hito 1 se migró a **PHP**:
 
 **1. Servidor local ejecutándose**
 
-![Sitio corriendo en localhost/instituto-php](docs/capturas/tp4/01-servidor-local.jpg)
+![Sitio corriendo en localhost/instituto-php](docs/capturas/tp4/01-servidor-local.png)
 
 **2. Estructura modular (SSI)**
 
-![Código fuente de header.php, nav.php y footer.php](docs/capturas/tp4/02-estructura-ssi.png)
+![Código fuente de includes/header.php](docs/capturas/tp4/02a-header.png)
+
+![Código fuente de includes/nav.php](docs/capturas/tp4/02b-nav.png)
+
+![Código fuente de includes/footer.php](docs/capturas/tp4/02c-footer.png)
 
 **3. Navegación dinámica**
 
@@ -110,7 +114,7 @@ Alternativa sin XAMPP: `php -S localhost:8000` dentro de la carpeta.
 > Las capturas de TP1 a TP4 están integradas en cada sección anterior. La carpeta completa de evidencias es [`docs/capturas/`](docs/capturas/).
 
 ## Flujo de Git
-Ramas `feature/maquetacion` y `feature/migracion-php-ssi`, integradas a `main` con Pull Request.
+La corrección y la evidencia de TP4 se integran desde la rama `feature/migracion-php-ssi` a `main` mediante Pull Request. Las etapas siguientes se desarrollaron en `feature/tp6-base-de-datos`, `feature/tp7-crud`, `feature/tp8-sesiones-autenticacion`, `feature/tp9-ajax-json` y `feature/tp10-mvc-framework`.
 
 ## Fuentes
 Datos del instituto: sitios públicos y su perfil de Instagram. Los nombres del equipo docente son ficticios (maqueta). Agenda: PDF institucional 2026.
