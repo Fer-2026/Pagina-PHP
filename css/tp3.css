@@ -1,0 +1,16 @@
+/*
+ * Ajustes de accesibilidad para la versión estática de TP3.
+ * Bootstrap usa #0d6efd para enlaces, que no alcanza 4.5:1 sobre los fondos claros del sitio.
+ */
+:root {
+  --bs-link-color: #0a5a18;
+  --bs-link-hover-color: #073f10;
+}
+
+a {
+  color: var(--bs-link-color);
+}
+
+a:hover {
+  color: var(--bs-link-hover-color);
+}

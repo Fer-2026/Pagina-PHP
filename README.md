@@ -4,7 +4,9 @@ Sitio web institucional (Salta): Educación Secundaria, turno mañana, 1.º a 5.
 
 > **Proyecto completo:** la versión actualizada está en [`Desktop/Fer/instituto-php/`](Desktop/Fer/instituto-php/). La documentación detallada, las instrucciones de instalación y **todas las capturas** están en el [README del proyecto](Desktop/Fer/instituto-php/README.md).
 >
-> **Para la corrección:** abrir esa carpeta como raíz del proyecto y usar el README completo. La copia de la raíz conserva la versión TP1–TP4 del sitio.
+> **TP3 en línea:** la entrega estática HTML5 está publicada en <https://fer-2026.github.io/Pagina-PHP/>.
+>
+> **Para la corrección:** abrir esa carpeta como raíz del proyecto y usar el README completo. La copia de la raíz conserva la versión TP1–TP4 del sitio e incluye la versión estática de TP3 publicada en GitHub Pages.
 
 ## Prototipo de Figma
 
@@ -18,6 +20,7 @@ HTML5, CSS3, Bootstrap 5.3, JavaScript, PHP 8.x, MySQL/MariaDB, XAMPP/Laragon, G
 ## Documentación y accesos rápidos
 
 - [README completo del proyecto](Desktop/Fer/instituto-php/README.md)
+- [Auditoría Lighthouse del TP3](docs/accesibilidad-lighthouse.md)
 - [Carpeta general de capturas](Desktop/Fer/instituto-php/docs/capturas/)
 - [Capturas de la Clase 5 / TP5](Desktop/Fer/instituto-php/clase5/docs/capturas/)
 - [Capturas del TP6](Desktop/Fer/instituto-php/tp6/docs/capturas/)
@@ -52,9 +55,36 @@ Prototipo visual y definición de la identidad del sitio antes de llevarlo a có
 
 ![Contacto en Figma](Desktop/Fer/instituto-php/docs/capturas/tp2/03-figma-contacto.jpg)
 
-## TP3: navegación dinámica y componentes reutilizables
+## TP3: maquetación HTML5, responsive y accesibilidad
 
-Menú generado desde un arreglo PHP, con estado activo, `aria-current` y componentes reutilizables en `includes/`.
+La entrega estática de TP3 está formada por **10 vistas HTML5 en la raíz del repositorio**, con Bootstrap 5.3, CSS propio, JavaScript y las carpetas `css/`, `js/` e `img/`. Se desarrolló en la rama `feature/maquetacion`, se formateó con Prettier y se publicó con GitHub Pages.
+
+**Sitio publicado:** <https://fer-2026.github.io/Pagina-PHP/>
+
+| Vista | Archivo estático |
+|---|---|
+| Inicio | [`index.html`](index.html) |
+| Institucional | [`institucional.html`](institucional.html) |
+| Docentes | [`docentes.html`](docentes.html) |
+| Propuesta educativa | [`propuesta-educativa.html`](propuesta-educativa.html) |
+| Plan de estudios | [`plan-de-estudios.html`](plan-de-estudios.html) |
+| Ciencias Naturales | [`ciencias-naturales.html`](ciencias-naturales.html) |
+| Agenda 2026 | [`agenda.html`](agenda.html) |
+| Galería | [`galeria.html`](galeria.html) |
+| Inscripción | [`inscripcion.html`](inscripcion.html) |
+| Contacto | [`contacto.html`](contacto.html) |
+
+**Auditoría Lighthouse:** [ver informe completo](docs/accesibilidad-lighthouse.md). En Mobile: Performance 98–99, Accesibilidad 100, Best Practices 100 y SEO 100. En Desktop: 100 en las cuatro categorías. Se corrigió el contraste de los enlaces del breadcrumb en `css/tp3.css`.
+
+**Formato:** `npx prettier@3.3.3 --write "*.html" css/tp3.css` y `npx prettier@3.3.3 --check "*.html" css/tp3.css`.
+
+![Inicio de la versión estática en escritorio](docs/capturas/tp3/01-sitio-estatico.png)
+
+![Inicio responsive de la versión estática](docs/capturas/tp3/02-vista-movil.png)
+
+![Resumen de la auditoría Lighthouse](docs/capturas/tp3/03-lighthouse.png)
+
+La navegación dinámica con arreglo PHP, `aria-current` e `includes/` se incorporó después, en TP4; se conserva como evolución del proyecto:
 
 ![Menú de navegación del sitio](Desktop/Fer/instituto-php/docs/capturas/03-nav.jpg)
 
