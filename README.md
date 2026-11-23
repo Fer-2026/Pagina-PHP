@@ -4,7 +4,16 @@ Sitio web institucional (Salta): Educación Secundaria, turno mañana, 1.º a 5.
 
 > **Proyecto completo:** la versión actualizada está en [`Desktop/Fer/instituto-php/`](Desktop/Fer/instituto-php/). La documentación detallada, las instrucciones de instalación y **todas las capturas** están en el [README del proyecto](Desktop/Fer/instituto-php/README.md).
 >
-> **Para la corrección:** abrir esa carpeta como raíz del proyecto y usar el README completo. La copia de la raíz es la versión inicial del sitio.
+> **Para la corrección:** abrir esa carpeta como raíz del proyecto y usar el README completo. La copia de la raíz conserva la versión TP1–TP4 del sitio.
+
+## Prototipo de Figma
+
+- [Repositorio del prototipo](https://github.com/Fer-2026/Dise-o-UI-UX-Mockup-Figma-)
+- [Mockups en Figma](https://www.figma.com/make/UL3GSEQOHBF6XCXKV9COQ8/High-Fidelity-Mockups-for-School?t=qmuPPG4mTDi6oJpE-1)
+
+## Tecnologías
+
+HTML5, CSS3, Bootstrap 5.3, JavaScript, PHP 8.x, MySQL/MariaDB, XAMPP/Laragon, Git, GitHub, Prettier y CodeIgniter 4 (TP10).
 
 ## Documentación y accesos rápidos
 
@@ -57,11 +66,15 @@ Las 10 vistas pasaron a PHP y comparten header, nav y footer. El título se gene
 
 **1. Servidor local ejecutándose**
 
-![Sitio corriendo en localhost/instituto-php](Desktop/Fer/instituto-php/docs/capturas/tp4/01-servidor-local.jpg)
+![Sitio corriendo en localhost/instituto-php](Desktop/Fer/instituto-php/docs/capturas/tp4/01-servidor-local.png)
 
 **2. Estructura modular (SSI)**
 
-![Código fuente de header.php, nav.php y footer.php](Desktop/Fer/instituto-php/docs/capturas/tp4/02-estructura-ssi.png)
+![Código fuente de includes/header.php](Desktop/Fer/instituto-php/docs/capturas/tp4/02a-header.png)
+
+![Código fuente de includes/nav.php](Desktop/Fer/instituto-php/docs/capturas/tp4/02b-nav.png)
+
+![Código fuente de includes/footer.php](Desktop/Fer/instituto-php/docs/capturas/tp4/02c-footer.png)
 
 **3. Navegación dinámica**
 
@@ -155,11 +168,28 @@ Parte A: CRUD de cursos refactorizado a MVC nativo. Parte B: módulo independien
 
 [Ver las 12 capturas de TP10](Desktop/Fer/instituto-php/docs/capturas/tp10/)
 
-## Ejecución rápida
+## Instalación y ejecución local
 
-1. Iniciar **Apache** y **MySQL** desde XAMPP.
-2. Copiar `Desktop/Fer/instituto-php/` a `htdocs/instituto-php/` o configurar el `DocumentRoot` apuntando a esa carpeta.
-3. Abrir `http://localhost/instituto-php/`.
-4. Para el módulo CodeIgniter, ejecutar `composer install` dentro de `tp10/framework/` si falta `vendor/`.
+1. Clonar el repositorio:
+
+```bash
+git clone https://github.com/Fer-2026/Pagina-PHP.git
+```
+
+2. Copiar la carpeta completa `Pagina-PHP/Desktop/Fer/instituto-php/` a `C:\xampp\htdocs\instituto-php` (o configurar el `DocumentRoot` apuntando a esa carpeta).
+3. Crear el archivo local `.env` a partir de la plantilla:
+
+```bash
+cd /c/xampp/htdocs/instituto-php
+cp .env.example .env
+```
+
+4. Iniciar **Apache** y **MySQL** desde XAMPP.
+5. Abrir `http://localhost/instituto-php/`.
+6. Para el módulo CodeIgniter, ejecutar `composer install` dentro de `tp10/framework/` si falta `vendor/`.
 
 La explicación completa de cada TP, los requisitos y las pruebas están en el [README del proyecto](Desktop/Fer/instituto-php/README.md).
+
+## Flujo de Git
+
+La corrección y la evidencia de TP4 se integran desde la rama `feature/migracion-php-ssi` a `main` mediante Pull Request. Las etapas siguientes se desarrollaron en `feature/tp6-base-de-datos`, `feature/tp7-crud`, `feature/tp8-sesiones-autenticacion`, `feature/tp9-ajax-json` y `feature/tp10-mvc-framework`.

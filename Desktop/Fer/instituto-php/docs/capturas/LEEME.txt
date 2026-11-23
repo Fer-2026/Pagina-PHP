@@ -1,1 +1,1 @@
-Guardá acá las 7 capturas indicadas en el README (01-localhost.png ... 07-env-example.png).
+Las capturas generales de TP1 a TP4 están en esta carpeta. Las evidencias de TP4 están en `tp4/`: servidor local, header.php, nav.php, footer.php, navegación dinámica y `.env.example`. Las capturas de TP5 a TP10 están en sus carpetas correspondientes.
