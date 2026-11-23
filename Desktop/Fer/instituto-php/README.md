@@ -29,7 +29,23 @@ Antes de llevar el sitio a código se armó el prototipo visual y la identidad d
 
 ![Contacto en Figma](docs/capturas/tp2/03-figma-contacto.jpg)
 
-## TP3: navegación dinámica y componentes reutilizables
+## TP3: maquetación HTML5, responsive y accesibilidad
+
+La entrega estática de TP3 está formada por **10 vistas HTML5 en la raíz del repositorio**, con Bootstrap 5.3, CSS propio, JavaScript y las carpetas `css/`, `js/` e `img/`. Se desarrolló en la rama `feature/maquetacion`, se formateó con Prettier y se publicó con GitHub Pages.
+
+**Sitio publicado:** <https://fer-2026.github.io/Pagina-PHP/>
+
+**Auditoría Lighthouse:** [informe completo](docs/accesibilidad-lighthouse.md). En Mobile: Performance 98–99, Accesibilidad 100, Best Practices 100 y SEO 100. En Desktop: 100 en las cuatro categorías. Se corrigió el contraste de los enlaces del breadcrumb en `css/tp3.css`.
+
+**Capturas de evidencia de la versión estática**
+
+![Inicio de la versión estática en escritorio](docs/capturas/tp3/01-sitio-estatico.png)
+
+![Inicio responsive de la versión estática](docs/capturas/tp3/02-vista-movil.png)
+
+![Resumen de la auditoría Lighthouse](docs/capturas/tp3/03-lighthouse.png)
+
+### Navegación dinámica (evolución posterior)
 
 El menú principal se genera desde un arreglo PHP con secciones e hijos. El código detecta la ruta actual, marca el ítem activo con `active` y `aria-current`, y reutiliza el mismo header, nav y footer en todas las vistas.
 
