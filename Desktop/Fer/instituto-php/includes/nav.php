@@ -29,11 +29,29 @@ if (!function_exists('e')) {
     }
 }
 
+if (!function_exists('ruta_activa')) {
+    function ruta_activa(string $archivo, string $ruta_actual): bool
+    {
+        $destino = parse_url(url($archivo), PHP_URL_PATH) ?: '';
+
+        if ($destino === $ruta_actual) {
+            return true;
+        }
+
+        if ($archivo === 'index.php') {
+            $base = rtrim(BASE_URL, '/');
+            return $ruta_actual === '' || $ruta_actual === '/' || $ruta_actual === $base || $ruta_actual === $base . '/';
+        }
+
+        return false;
+    }
+}
+
 if (!function_exists('grupo_activo')) {
     function grupo_activo(array $hijos, string $ruta_actual): bool
     {
         foreach ($hijos as [, $archivo]) {
-            if (parse_url(url($archivo), PHP_URL_PATH) === $ruta_actual) {
+            if (ruta_activa($archivo, $ruta_actual)) {
                 return true;
             }
         }
@@ -62,7 +80,7 @@ if (!function_exists('grupo_activo')) {
               </a>
               <ul class="dropdown-menu">
                 <?php foreach ($destino as [$subtexto, $archivo]): ?>
-                  <?php $activo = (parse_url(url($archivo), PHP_URL_PATH) === $ruta_actual); ?>
+                  <?php $activo = ruta_activa($archivo, $ruta_actual); ?>
                   <li>
                     <a class="dropdown-item<?= $activo ? ' active' : '' ?>" href="<?= e(url($archivo)) ?>"<?= $activo ? ' aria-current="page"' : '' ?>>
                       <?= e($subtexto) ?>
@@ -72,7 +90,7 @@ if (!function_exists('grupo_activo')) {
               </ul>
             </li>
           <?php else: ?>
-            <?php $activo = (parse_url(url($destino), PHP_URL_PATH) === $ruta_actual); ?>
+            <?php $activo = ruta_activa($destino, $ruta_actual); ?>
             <li class="nav-item">
               <a class="nav-link<?= $activo ? ' active' : '' ?>" href="<?= e(url($destino)) ?>"<?= $activo ? ' aria-current="page"' : '' ?>>
                 <?= e($texto) ?>
